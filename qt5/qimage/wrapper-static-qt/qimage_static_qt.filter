@@ -1,0 +1,31 @@
+SCOREP_FILE_NAMES_BEGIN
+  EXCLUDE *
+  #INCLUDE /usr/include/x86_64-linux-gnu/qt5/QtGui/*
+  #INCLUDE /usr/include/x86_64-linux-gnu/qt5/QtWidget/*
+  INCLUDE /opt/qt/5.7/include/QtGui/*
+  INCLUDE /opt/qt/5.7/include/QtWidget/*
+SCOREP_FILE_NAMES_END
+
+SCOREP_REGION_NAMES_BEGIN
+
+    # Only include QImage
+
+    EXCLUDE *
+    INCLUDE *QImage*
+
+    # Only Exclude anything from QImage that has no symbol (from missing.filter)
+
+    EXCLUDE MANGLED _ZNK6QImage5validERK6QPoint
+    EXCLUDE MANGLED _ZNK6QImage10pixelIndexERK6QPoint
+    EXCLUDE MANGLED _ZNK6QImage5pixelERK6QPoint
+    EXCLUDE MANGLED _ZN6QImage8setPixelERK6QPointj
+    EXCLUDE MANGLED _ZNK6QImage10pixelColorERK6QPoint
+    EXCLUDE MANGLED _ZN6QImage13setPixelColorERK6QPointRK6QColor
+    EXCLUDE MANGLED _ZNK15QImageIOHandler7canReadEv
+    EXCLUDE MANGLED _ZN15QImageIOHandler4readEP6QImage
+    EXCLUDE MANGLED _ZNK14QImageIOPlugin12capabilitiesEP9QIODeviceRK10QByteArray
+    EXCLUDE MANGLED _ZNK14QImageIOPlugin6createEP9QIODeviceRK10QByteArray
+    EXCLUDE MANGLED _ZN14QOpenGLTextureC2ERK6QImagei
+    EXCLUDE MANGLED _ZN14QOpenGLTextureC1ERK6QImagei
+    EXCLUDE MANGLED _ZN14QOpenGLTexture7setDataERK6QImagei
+SCOREP_REGION_NAMES_END
