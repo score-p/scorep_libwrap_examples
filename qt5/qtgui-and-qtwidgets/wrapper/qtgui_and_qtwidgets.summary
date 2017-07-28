@@ -1,0 +1,9 @@
+Configure command:
+  scorep-libwrap-init           --name qtgui_and_qtwidgets \
+                                --display-name 'Qt Gui & Widgets' \
+                                --prefix '/opt/scorep-libwrap' \
+                                -x c++ \
+                                --backend vanilla \
+                                --cppflags '-fPIC -I/usr/include/x86_64-linux-gnu/qt5/' \
+                                --ldflags '-fPIC' \
+                                --libs '-lQt5Widgets -lQt5Gui -lQt5Core'

@@ -1,11 +1,9 @@
-QT_INCLUDE=/usr/include/x86_64-linux-gnu/qt5
-
 LW_NAME                 = qtgui_and_qtwidgets
 LW_DISPLAY_NAME         = 'Qt Gui & Widgets'
 LW_PREFIX               = /opt/scorep-libwrap
 LW_BACKEND              = 
 LW_BACKEND_SUFFIX       = 
-CPPFLAGS                = -fPIC -I${QT_INCLUDE}
+CPPFLAGS                = -fPIC -I/usr/include/x86_64-linux-gnu/qt5/
 LDFLAGS                 = -fPIC
 LIBS                    = -lQt5Widgets -lQt5Gui -lQt5Core
 SCOREP_CC               = g++

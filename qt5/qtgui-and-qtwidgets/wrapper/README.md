@@ -50,13 +50,14 @@ This feature requires Score-P to be configured with libclang.
 You can find out whether user library wrapping is enabled in the configure
 summary or via `scorep-info config-summary` in Section "Score-P (libwrap)".
 
-There exist two ways to to wrap calls to the to-be-wrapped (or target-)
+There exist two ways to wrap calls to the to-be-wrapped (or target-)
 library. The main difference lies in when the actual wrapping takes place -
 at linktime or runtime. While they are in essence the same, they differ in
 which function calls can be intercepted. Specifically:
 
-  - linktime: Wraps only calls originating from object files that are part
-              of the linker command lines.
+  - linktime: Wraps calls originating from object files that are part of the
+              linker command line. In addition, calls originating from static
+              libraries are wrapped as well.
               The actual technique used is the `-wrap` linker flag.
 
   - runtime:  Wraps all calls that linktime wrapping would, plus those which
