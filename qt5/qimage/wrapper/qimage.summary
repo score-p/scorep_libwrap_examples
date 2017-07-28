@@ -1,0 +1,10 @@
+Configure command:
+  scorep-libwrap-init           --name qimage \
+                                --display-name 'QImage' \
+                                --prefix '/opt/scorep-libwrap' \
+                                -x c++ \
+                                --backend vanilla \
+                                --cppflags '-fPIC -I/opt/qt/5.7/include' \
+                                --ldflags '-fPIC -L/opt/qt/5.7/lib' \
+                                --libs '-lQt5Widgets -lQt5Gui -lQt5Core -lpthread -lpng -ljpeg -lpcre16 -ldl' \
+                                '--static-only-target-library'
