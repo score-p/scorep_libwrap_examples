@@ -78,11 +78,11 @@ In this case you should reinitialize the workspace by appending
 `--update --static-only-target-library` to your `scorep-libwrap-init`
 command line.
 
-Workflow for Wrapping a Library
+Workflow for wrapping a library
 ===============================
 
-1. Initialize the Working Directory
------------------------------------
+Step 1: Initialize the working directory
+----------------------------------------
 
 To initialize the working directory for a new library wrapper use the
 `scorep-libwrap-init` command. `scorep-libwrap-init` has a number of
@@ -150,22 +150,22 @@ the wrapper library to the terminal.
     sub-headers from e.g. `/usr/include` will not be wrapped.
   - `README.md` is the file containing this text
 
-2. Add Library Headers
-----------------------
+Step 2: Add library headers
+---------------------------
 
 The next step is to add `#include`-statements to `libwrap.h`.
 The included files should be headers that applications using the target
 library usually include.
 
-3. Create a Simple Example Application
---------------------------------------
+Step 3: Create a simple example application
+-------------------------------------------
 
 After this, add some basic calls to the target library to `main.c`.
 This file will later be compiled, linked and executed to test whether the
 target library and wrapper work correctly.
 
-4. Further Configure the Build Parameters
------------------------------------------
+Step 4: Further configure the build parameters
+----------------------------------------------
 
 There are a number of variables at the top of `Makefile` that can be adjusted:
 
@@ -187,8 +187,8 @@ There are a number of variables at the top of `Makefile` that can be adjusted:
 
 There are more variables that hopefully need no manual adjustment.
 
-5. Build the Wrapper
---------------------
+Step 5: Build the wrapper
+-------------------------
 
 Run
 
@@ -244,8 +244,8 @@ to run `make`, `make check` and after adjusting the wrapper settings to account
 for errors and warnings you again run `make` and `make check`.
 It can also take more iterations.
 
-6. Verify the Wrapper
----------------------
+Step 6: Verify the wrapper
+--------------------------
 
 Run
 
@@ -270,8 +270,8 @@ or all of these symbols to the filter file for this wrapper.
 As mentioned in the last paragraph of the previous section, repeat `make`
 and `make check` if you adjust your wrapper.
 
-7. Install the Wrapper
-----------------------
+Step 7: Install the wrapper
+---------------------------
 
 Once the wrapper builds without errors, you are ready to install it. Run
 
@@ -281,8 +281,8 @@ This step installs the wrapper into the Score-P installation or the directory
 specified via `--prefix`, and prints a short description of how to use the
 wrapper.
 
-8. Verify the Installed Wrapper
--------------------------------
+Step 8: Verify the installed wrapper
+------------------------------------
 
 Run
 
@@ -295,8 +295,8 @@ will create Score-P experiment directories with measurements of main.c
 and the wrapped target library. Inspect the experiments to make sure the
 wrapper works as expected.
 
-9. Use the Wrapper
-------------------
+Step 9: Use the wrapper
+-----------------------
 
 If you installed the wrapper to somewhere other than the Score-P installation
 via the `--prefix`-flag, add the appropriate prefix to `SCOREP_LIBWRAP_PATH`.
@@ -342,7 +342,7 @@ Optionally you can run
 
 to show the configuration of a specific wrapper.
 
-Workflow in Short
+Workflow in short
 =================
 
     $ scorep-libwrap-init --name=<name> -x c --cppflags="<>" --ldflags="<>" \
@@ -361,7 +361,7 @@ Workflow in Short
     $ ./myprogram
     # Inspect the experiment directory scorep-*
 
-Implementation Details
+Implementation details
 ======================
 
 Score-P user library wrapping enables users to intercept and analyse any
@@ -373,7 +373,7 @@ Many C++-libraries rely heavily on inlining and templates.
 Wrapping libraries based on symbols being present in the target library means
 that this technique is unable to intercept any inlined function calls.
 
-libclang`'s ability to detect to-be-inlined functions in header files
+libclang's ability to detect to-be-inlined functions in header files
 improved with LLVM 3.9. For LLVM versions <= 3.8 the library wrapper generator
 will likely generate function wrappers for functions that are inlined and
 cannot be wrapped. The workflow will provide you with a warning and what

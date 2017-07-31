@@ -5,7 +5,7 @@
     - Source `fix-type-scopes.sh` every time you generate the wrapper newly. I.e. after `make,` if it shows `GEN scorep_libwrap_\*.cc`.
     - If more errors turn up you might need to look up where these types come from, I.e. google "qt UndeclaredType", and add them to the list
 
--------------------------------------------------------------------------------
+###############################################################################
 $ scorep-libwrap-init --name qtgui_and_qtwidgets --display-name "Qt Gui & Widgets" -x c++ --cppflags "-fPIC -I/usr/include/x86_64-linux-gnu/qt5/" --ldflags "-fPIC" --libs "-lQt5Widgets -lQt5Gui -lQt5Core"
 Created working directory '.' for library wrapper qtgui_and_qtwidgets.
 
@@ -27,7 +27,7 @@ To use the wrapper, link your application like this before executing it:
 
 For detailed instructions consult 'README.md'.
 
--------------------------------------------------------------------------------
+###############################################################################
 $ vim libwrap.h 
 $ cat libwrap.h 
 #ifndef LIBWRAP_H
@@ -45,7 +45,7 @@ $ cat libwrap.h
 
 #endif /* LIBWRAP_H */
 
--------------------------------------------------------------------------------
+###############################################################################
 $ vim main.cc 
 $ cat main.cc 
 #include "libwrap.h"
@@ -68,7 +68,7 @@ main( int   argc,
     return app.exec();
 }
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make
   CCLD      main
   CPP       libwrap.i
@@ -101,7 +101,7 @@ $ make
 Makefile:169: recipe for target 'quick-check' failed
 make: *** [quick-check] Error 1
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make check
 [Score-P] Warning: Checking 13878 symbols. This may take a while.
   FOUND     _ZN9QtPrivate20QContainerImplHelper3midEiPiS1_
@@ -123,7 +123,7 @@ $ wc -l qtgui_and_qtwidgets.wrap
 $ grep "QByteArray" qtgui_and_qtwidgets.wrap  # QByteArray class is part of QtCore not Widgets or Gui
 $ grep "QString" qtgui_and_qtwidgets.wrap     # QString class is part of QtCore not Widgets or Gui
 
--------------------------------------------------------------------------------
+###############################################################################
 $ vim qtgui_and_qtwidgets.filter 
 $ cat qtgui_and_qtwidgets.filter 
 # See Score-P Manual on Filtering for infos
@@ -131,7 +131,7 @@ $ cat qtgui_and_qtwidgets.filter
 SCOREP_FILE_NAMES_BEGIN
   EXCLUDE *
   INCLUDE /usr/include/x86_64-linux-gnu/qt5/QtGui/*
-  INCLUDE /usr/include/x86_64-linux-gnu/qt5/QtWidget/*
+  INCLUDE /usr/include/x86_64-linux-gnu/qt5/QtWidgets/*
   #EXCLUDE */asd?.*
   #INCLUDE */folder/asdf.c */qwerty.*
   #        /etc/bash.bashrc
@@ -146,18 +146,21 @@ SCOREP_REGION_NAMES_BEGIN
   #INCLUDE foo123bar
 SCOREP_REGION_NAMES_END
 
--------------------------------------------------------------------------------
-$ make check
-[Score-P] Warning: Checking 4587 symbols. This may take a while.
-  FOUND     _ZN9QtPrivate22QPixelFormat_createYUVEN12QPixelFormat9YUVLayoutEhNS0_10AlphaUsageENS0_13AlphaPositionENS0_18AlphaPremultipliedENS0_18TypeInterpretationENS0_9ByteOrderE
+###############################################################################
+AlphaPositionENS0_18AlphaPremultipliedENS0_18TypeInterpretationENS0_9ByteOrderE
   FOUND     _ZN2Qt15mightBeRichTextERK7QString
   FOUND     _ZN2Qt20convertFromPlainTextERK7QStringNS_14WhiteSpaceModeE
-
+  FOUND     _ZN2Qt12codecForHtmlERK10QByteArray
+  FOUND     _Zls6QDebugRK6QColor
+  FOUND     _ZlsR11QDataStreamRK6QColor
+  FOUND     _ZrsR11QDataStreamR6QColor
+  MISSING   _ZN6QColorC2Ev
 [..]
-
-  FOUND     _ZNK27QRegularExpressionValidator17regularExpressionEv
-  FOUND     _ZN27QRegularExpressionValidator20setRegularExpressionERK18QRegularExpression
-  FOUND     _ZN27QRegularExpressionValidator24regularExpressionChangedERK18QRegularExpression
+  FOUND     _ZNK11QToolButton9autoRaiseEv
+  FOUND     _ZN11QToolButton8showMenuEv
+  FOUND     _ZN11QToolButton18setToolButtonStyleEN2Qt15ToolButtonStyleE
+  FOUND     _ZN11QToolButton16setDefaultActionEP7QAction
+  FOUND     _ZN11QToolButton9triggeredEP7QAction
 [Score-P] Error: Symbols that are not present in the target library have been
 [Score-P]        wrapped. The filter file 'missing.filter' containing these
 [Score-P]        symbols has been created. Reconsider your wrapper settings, or
@@ -166,12 +169,12 @@ $ make check
 Makefile:283: recipe for target 'check' failed
 make: *** [check] Error 1
 
--------------------------------------------------------------------------------
+###############################################################################
 $ vim -p qtgui_and_qtwidgets.filter missing.filter
 
 # Put everything from missing.filter to math.filter
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make
   GEN       scorep_libwrap_qtgui_and_qtwidgets.cc
 [Score-P] /usr/include/x86_64-linux-gnu/qt5/QtGui/qpolygon.h:90: Warning: Ignoring variadic function: 'QPolygon::setPoints(int, int, int, ...)'. If this function has a 'va_list' variant, add '_ZN8QPolygon9setPointsEiiiz:valistvariantfunction' to the LIBWRAP_ELLIPSIS_MAPPING_SYMBOLS variable in the Makefile.
@@ -200,17 +203,20 @@ scorep_libwrap_qtgui_and_qtwidgets.inc.c:3649:63: error: ‘InfoFlags’ has not
 scorep_libwrap_qtgui_and_qtwidgets.inc.c:3647:1: note: in expansion of macro ‘SCOREP_LIBWRAP_PROCESS_FUNC’
  SCOREP_LIBWRAP_PROCESS_FUNC( ( void ),
  ^
-scorep_libwrap_qtgui_and_qtwidgets.inc.c:3953:32: error: variable or field ‘__real__ZN11QAccessible14installFactoryEPFP20QAccessibleInterfaceRK7QStringP7QObjectE’ declared void
-                              ( InterfaceFactory scorep_libwrap_arg_1 ),
-                                ^
 
 [..]
 
-/opt/scorep-libwrap/include/scorep/SCOREP_Libwrap_Macros.h:190:74: note: in definition of macro ‘SCOREP_LIBWRAP_DECLARE_REAL_FUNC’
-     _SCOREP_LIBWRAP_RETTYPE rettype SCOREP_LIBWRAP_FUNC_REAL_NAME( func )argtypes
-                                                                          ^~~~~~~~
-scorep_libwrap_qtgui_and_qtwidgets.inc.c:28343:1: note: in expansion of macro ‘SCOREP_LIBWRAP_PROCESS_FUNC’
- SCOREP_LIBWRAP_PROCESS_FUNC( ( QTextCursor ),
+scorep_libwrap_qtgui_and_qtwidgets.inc.c:69495:32: error: ‘AutoFormatting’ does not name a type
+ SCOREP_LIBWRAP_PROCESS_FUNC( ( AutoFormatting ),
+                                ^
+/opt/scorep-libwrap/include/scorep/SCOREP_Libwrap_Macros.h:146:40: note: in definition of macro ‘_SCOREP_LIBWRAP_RETTYPE’
+ #define _SCOREP_LIBWRAP_RETTYPE( ... ) __VA_ARGS__
+                                        ^~~~~~~~~~~
+scorep_libwrap_qtgui_and_qtwidgets.cc:29:5: note: in expansion of macro ‘SCOREP_LIBWRAP_DECLARE_REAL_FUNC’
+     SCOREP_LIBWRAP_DECLARE_REAL_FUNC( rettype, func, args ); \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+scorep_libwrap_qtgui_and_qtwidgets.inc.c:69495:1: note: in expansion of macro ‘SCOREP_LIBWRAP_PROCESS_FUNC’
+ SCOREP_LIBWRAP_PROCESS_FUNC( ( AutoFormatting ),
  ^
 scorep_libwrap_qtgui_and_qtwidgets.cc:7210:1: error: ‘InfoFlags’ does not name a type
  InfoFlags
@@ -222,13 +228,13 @@ scorep_libwrap_qtgui_and_qtwidgets.cc:8168:109: error: variable or field ‘__wr
  SCOREP_LIBWRAP_FUNC_NAME( _ZN11QAccessible14installFactoryEPFP20QAccessibleInterfaceRK7QStringP7QObjectE )( InterfaceFactory scorep_libwrap_arg_1 )
                                                                                                              ^~~~~~~~~~~~~~~~
 scorep_libwrap_qtgui_and_qtwidgets.cc:8168:109: error: ‘InterfaceFactory’ was not declared in this scope
-scorep_libwrap_qtgui_and_qtwidgets.cc:64587:1: error: expected ‘}’ at end of input
+scorep_libwrap_qtgui_and_qtwidgets.cc:151645:1: error: expected ‘}’ at end of input
  }
  ^
 Makefile:212: recipe for target 'libscorep_libwrap_qtgui_and_qtwidgets_linktime.lo' failed
 make: *** [libscorep_libwrap_qtgui_and_qtwidgets_linktime.lo] Error 1
 
--------------------------------------------------------------------------------
+###############################################################################
 $ . ../fix-type-scopes.sh
 $ cat ../fix-type-scopes.sh
 wrapper_name=qtgui_and_qtwidgets
@@ -244,23 +250,37 @@ prepend_type_scope() {
     sed -i "s/ $1 / $2::$1 /g" scorep_libwrap_$wrapper_name.inc.c
 }
 
-prepend_type_scope InfoFlags           QTouchEvent::TouchPoint
-prepend_type_scope InterfaceFactory    QAccessible
-prepend_type_scope UpdateHandler       QAccessible
-prepend_type_scope RootObjectHandler   QAccessible
-prepend_type_scope Id                  QAccessible
-prepend_type_scope FormatOptions       QSurfaceFormat
+prepend_type_scope AutoFormatting      QTextEdit
+prepend_type_scope BlurHints           QGraphicsBlurEffect
+prepend_type_scope CacheMode           QGraphicsView
+prepend_type_scope ChangeFlags         QPinchGesture
+prepend_type_scope DockWidgetFeatures  QDockWidget
+prepend_type_scope EditTriggers        QAbstractItemView
 prepend_type_scope FindFlags           QTextDocument
-prepend_type_scope RenderFlags         QTextItem
-prepend_type_scope RenderHints         QPainter
+prepend_type_scope FontFilters         QFontComboBox
+prepend_type_scope FormatOptions       QSurfaceFormat
+prepend_type_scope GlyphRunFlags       QGlyphRun
+prepend_type_scope GraphicsItemFlags   QGraphicsItem
+prepend_type_scope Id                  QAccessible
+prepend_type_scope InfoFlags           QTouchEvent::TouchPoint
+prepend_type_scope InputDialogOptions  QInputDialog
+prepend_type_scope InterfaceFactory    QAccessible
+prepend_type_scope IteratorFlags       QTreeWidgetItemIterator
+prepend_type_scope LayoutFlags         QRawFont
+prepend_type_scope OptimizationFlags   QGraphicsView
+prepend_type_scope Options             QFileIconProvider
 prepend_type_scope PaintEngineFeatures QPaintEngine
 prepend_type_scope PixmapFragmentHints QPainter
-prepend_type_scope LayoutFlags         QRawFont
 prepend_type_scope PixmapFragmentHints QPainter
-prepend_type_scope GlyphRunFlags       QGlyphRun
+prepend_type_scope RenderFlags         QTextItem
+prepend_type_scope RenderHints         QPainter
+prepend_type_scope RootObjectHandler   QAccessible
+prepend_type_scope SceneLayers         QGraphicsScene
 prepend_type_scope ShaderType          QOpenGLShader
+prepend_type_scope StandardButtons     QDialogButtonBox
+prepend_type_scope UpdateHandler       QAccessible
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make
   QUICK-CHECK
   CC        libscorep_libwrap_qtgui_and_qtwidgets_linktime.lo
@@ -270,7 +290,7 @@ ar: `u' modifier ignored since `D' is the default (see `U')
   CCLD      libscorep_libwrap_qtgui_and_qtwidgets_runtime.la
 ar: `u' modifier ignored since `D' is the default (see `U')
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make install
   QUICK-CHECK
   GEN       qtgui_and_qtwidgets.libwrap
@@ -283,7 +303,7 @@ $ make install
   INSTALL   qtgui_and_qtwidgets.nvcc.wrap
   INSTALL   qtgui_and_qtwidgets.filter
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make installcheck
   SCOREP    main_linktime_wrapped
   SCOREP    main_runtime_wrapped
@@ -299,344 +319,500 @@ $ make installcheck
 [Score-P] It should display numbers you would expect from intercepting
 [Score-P] main.c's calls to the target library.
 
--------------------------------------------------------------------------------
+###############################################################################
 $ ./main_linktime_wrapped && mv scorep-2* scorep-linktime
 $ ./main_runtime_wrapped && mv scorep-2* scorep-runtime
 
--------------------------------------------------------------------------------
+###############################################################################
 $ cube_info -m visits:excl scorep-linktime/profile.cubex
 |      Visits (E) | Diff-Calltree
 |               1 |  * int main(int, char**)
+|               1 |  |  * QApplication::QApplication(int &, char **, int)
+|               1 |  |  * QWidget::QWidget(QWidget *, Qt::WindowFlags)
 |               1 |  |  * QImage::QImage()
+|               1 |  |  * QWidget::show()
+|               1 |  |  * QApplication::exec()
+|               1 |  |  * QWidget::~QWidget()
+|               1 |  |  * QApplication::~QApplication()
 
--------------------------------------------------------------------------------
-$ cube_info -m visits:excl scorep-runtime/profile.cubex 
+###############################################################################
+$ cube_info -m visits:excl scorep-runtime/profile.cubex
 |      Visits (E) | Diff-Calltree
 |               1 |  * int main(int, char**)
-|               1 |  |  * QTouchDevice::QTouchDevice()
-|               1 |  |  * QTouchDevice::setName(const QString &)
-|               1 |  |  * QTouchDevice::setType(QTouchDevice::DeviceType)
-|               1 |  |  * QTouchDevice::setMaximumTouchPoints(int)
-|               2 |  |  * QGuiApplication::desktopSettingsAware()
-|               2 |  |  * QDesktopServices::setUrlHandler(const QString &, QObject *, const char *)
-|               7 |  |  * QPalette::QPalette()
-|             666 |  |  * QBrush::QBrush()
-|             915 |  |  * QColor::setRgb(int, int, int, int)
-|            1184 |  |  * QBrush::QBrush(const QColor &, Qt::BrushStyle)
-|            1971 |  |  * QBrush::~QBrush()
-|           11718 |  |  * QColor::blueF()
-|           11718 |  |  * QColor::greenF()
-|           11718 |  |  * QColor::redF()
-|            8524 |  |  * QColor::alphaF()
-|            5702 |  |  * QColor::fromRgbF(qreal, qreal, qreal, qreal)
-|             119 |  |  * QBrush::QBrush(const QBrush &)
-|               3 |  |  * QGuiApplication::platformName()
-|               1 |  |  * QGuiApplication::topLevelWindows()
-|               2 |  |  * QGuiApplication::primaryScreen()
-|               1 |  |  * QScreen::depth()
-|               4 |  |  * QFont::QFont(const QString &, int, int, bool)
-|               4 |  |  * QFont::setStyleHint(QFont::StyleHint, QFont::StyleStrategy)
-|               4 |  |  * QFont::fromString(const QString &)
-|              22 |  |  * QFont::QFont(const QFont &)
-|               4 |  |  * QIcon::QIcon()
-|              18 |  |  * QBrush::QBrush()
-|               2 |  |  * QGuiApplication::platformNativeInterface()
-|               4 |  |  * QGuiApplication::styleHints()
-|               2 |  |  * QStyleHints::startDragDistance()
-|               2 |  |  * QStyleHints::startDragTime()
-|               9 |  |  * QBrush::QBrush(const QBrush &)
-|              27 |  |  * QBrush::~QBrush()
-|               9 |  |  * QBrush::operator=(const QBrush &)
-|               4 |  |  * QGuiApplication::palette()
-|              14 |  |  * QPalette::~QPalette()
-|               1 |  |  * QGuiApplication::devicePixelRatio()
-|               1 |  |  * QPixmap::QPixmap(int, int)
-|              10 |  |  * QPixmap::setDevicePixelRatio(qreal)
-|               1 |  |  * QColor::QColor(Qt::GlobalColor)
-|               1 |  |  * QPixmap::fill(const QColor &)
-|               1 |  |  * QRadialGradient::QRadialGradient(qreal, qreal, qreal)
-|              11 |  |  * QColor::setAlpha(int)
-|              11 |  |  * QGradient::setColorAt(qreal, const QColor &)
-|               1 |  |  * QPainter::QPainter(QPaintDevice *)
-|               1 |  |  * QPainter::setRenderHint(QPainter::RenderHint, bool)
-|               1 |  |  * QBrush::QBrush(const QGradient &)
-|               1 |  |  * QPixmap::rect()
-|               1 |  |  * QPainter::fillRect(const QRect &, const QBrush &)
-|               1 |  |  * QPainter::setPen(Qt::PenStyle)
-|               1 |  |  * QBrush::QBrush(Qt::GlobalColor, Qt::BrushStyle)
-|               1 |  |  * QPainter::setBrush(const QBrush &)
-|               1 |  |  * QPainter::setCompositionMode(QPainter::CompositionMode)
-|               1 |  |  * QPainter::drawRoundedRect(const QRectF &, qreal, qreal, Qt::SizeMode)
-|               1 |  |  * QPainter::end()
-|               1 |  |  * QPixmap::isNull()
-|               1 |  |  * QPixmap::width()
-|              11 |  |  * QPixmap::devicePixelRatio()
-|               1 |  |  * QPixmap::height()
-|               9 |  |  * QPixmap::copy(const QRect &)
-|               9 |  |  * QPixmap::QPixmap(const QPixmap &)
-|              10 |  |  * QPixmap::~QPixmap()
-|               1 |  |  * QPainter::~QPainter()
-|               1 |  |  * QPalette::resolve(const QPalette &)
-|               2 |  |  * QPalette::operator=(const QPalette &)
-|               2 |  |  * QPalette::QPalette(const QPalette &)
-|               3 |  |  * QPalette::isCopyOf(const QPalette &)
-|               1 |  |  * QAccessible::installFactory(InterfaceFactory)
-|              17 |  |  * QRegion::QRegion()
-|               3 |  |  * QFont::QFont()
-|               1 |  |  * QGuiApplication::layoutDirection()
-|               4 |  |  * QBrush::isOpaque()
-|               3 |  |  * QFont::QFont(const QFont &, QPaintDevice *)
+|               1 |  |  * QApplication::QApplication(int &, char **, int)
+|               1 |  |  |  * QTouchDevice::QTouchDevice()
+|               1 |  |  |  * QTouchDevice::setName(const QString &)
+|               1 |  |  |  * QTouchDevice::setType(QTouchDevice::DeviceType)
+|               1 |  |  |  * QTouchDevice::setMaximumTouchPoints(int)
+|              45 |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  * QGuiApplication::platformName()
+|               2 |  |  |  * QGuiApplication::desktopSettingsAware()
+|               2 |  |  |  * QDesktopServices::setUrlHandler(const QString &, QObject *, const char *)
+|               1 |  |  |  * QApplication::setWheelScrollLines(int)
+|               4 |  |  |  * QPalette::QPalette()
+|             666 |  |  |  * QBrush::QBrush()
+|             915 |  |  |  * QColor::setRgb(int, int, int, int)
+|            1184 |  |  |  * QBrush::QBrush(const QColor &, Qt::BrushStyle)
+|            1971 |  |  |  * QBrush::~QBrush()
+|           11718 |  |  |  * QColor::blueF()
+|           11718 |  |  |  * QColor::greenF()
+|           11718 |  |  |  * QColor::redF()
+|            8524 |  |  |  * QColor::alphaF()
+|            5702 |  |  |  * QColor::fromRgbF(qreal, qreal, qreal, qreal)
+|             119 |  |  |  * QBrush::QBrush(const QBrush &)
+|               2 |  |  |  * QGuiApplication::platformName()
+|               1 |  |  |  * QGuiApplication::topLevelWindows()
 |               2 |  |  |  * QGuiApplication::primaryScreen()
-|               3 |  |  |  * QScreen::logicalDotsPerInchY()
-|               2 |  |  |  * QWindow::screen()
-|              30 |  |  * QFont::~QFont()
-|               1 |  |  * QImage::QImage()
-|               3 |  |  * QSurfaceFormat::QSurfaceFormat()
-|               4 |  |  * QCursor::QCursor(Qt::CursorShape)
-|               3 |  |  * QWindow::setSurfaceType(QSurface::SurfaceType)
-|               3 |  |  * QWindow::setFlags(Qt::WindowFlags)
-|               3 |  |  * QWindow::resize(const QSize &)
-|               5 |  |  * QWindow::isTopLevel()
-|               7 |  |  * QGuiApplication::screens()
-|               4 |  |  * QWindow::setScreen(QScreen *)
-|               3 |  |  * QWindow::requestedFormat()
-|               3 |  |  * QWindow::surfaceType()
-|               3 |  |  * QWindow::setFormat(const QSurfaceFormat &)
-|               3 |  |  * qt_window_private(QWindow *)
-|               3 |  |  * QWindow::create()
-|               3 |  |  |  * QWindow::screen()
-|               3 |  |  |  * QScreen::handle()
-|              10 |  |  |  * QWindow::type()
-|               3 |  |  |  * QSurfaceFormat::QSurfaceFormat()
-|               3 |  |  |  * QRegion::QRegion()
-|               4 |  |  |  * QWindow::isTopLevel()
-|               3 |  |  |  * QGuiApplication::desktopFileName()
-|               2 |  |  |  * QSurface::supportsOpenGL()
-|               1 |  |  |  * QWindow::requestedFormat()
-|               2 |  |  |  * QSurfaceFormat::QSurfaceFormat(const QSurfaceFormat &)
-|               3 |  |  |  * QSurfaceFormat::redBufferSize()
-|               2 |  |  |  * QSurfaceFormat::setRedBufferSize(int)
-|               3 |  |  |  * QSurfaceFormat::greenBufferSize()
-|               2 |  |  |  * QSurfaceFormat::setGreenBufferSize(int)
-|               3 |  |  |  * QSurfaceFormat::blueBufferSize()
-|               2 |  |  |  * QSurfaceFormat::setBlueBufferSize(int)
-|               1 |  |  |  * QSurfaceFormat::operator=(const QSurfaceFormat &)
-|               3 |  |  |  * QSurfaceFormat::~QSurfaceFormat()
-|               2 |  |  |  * QSurfaceFormat::alphaBufferSize()
-|               1 |  |  |  * QSurfaceFormat::swapBehavior()
-|               1 |  |  |  * QSurfaceFormat::testOption(QSurfaceFormat::FormatOption)
-|               1 |  |  |  * QSurfaceFormat::depthBufferSize()
-|               1 |  |  |  * QSurfaceFormat::stencilBufferSize()
-|               1 |  |  |  * QSurfaceFormat::samples()
-|               1 |  |  |  * QSurfaceFormat::setAlphaBufferSize(int)
-|               1 |  |  |  * QSurfaceFormat::setDepthBufferSize(int)
-|               1 |  |  |  * QSurfaceFormat::setStencilBufferSize(int)
-|               1 |  |  |  * QSurfaceFormat::setStereo(bool)
-|               5 |  |  |  * QWindow::flags()
-|               2 |  |  |  * qt_window_private(QWindow *)
-|               1 |  |  |  * QGuiApplication::sessionId()
-|               1 |  |  |  * QWindow::windowState()
-|               1 |  |  |  * QWindow::title()
-|               1 |  |  |  * QWindow::icon()
-|               1 |  |  |  * QIcon::isNull()
-|               1 |  |  |  * QIcon::~QIcon()
-|               3 |  |  * QWindow::flags()
-|              13 |  |  * QWindow::handle()
-|               3 |  |  * QWindow::setTitle(const QString &)
-|               3 |  |  * QGuiApplication::platformFunction(const QByteArray &)
-|               3 |  |  * QWindow::winId()
-|               3 |  |  * QSurfaceFormat::~QSurfaceFormat()
-|               3 |  |  * QWindow::setModality(Qt::WindowModality)
-|               3 |  |  * QWindow::frameMargins()
-|               3 |  |  * QScreen::geometry()
-|               2 |  |  * QWindow::setVisible(bool)
-|               1 |  |  |  * QWindow::qt_metacast(const char *)
-|               2 |  |  |  * QWindow::handle()
-|               2 |  |  |  * QCursor::shape()
-|               1 |  |  |  * QWindow::isTopLevel()
-|               3 |  |  |  * QWindow::windowState()
-|               5 |  |  |  * QWindow::flags()
-|               2 |  |  |  * qt_window_private(QWindow *)
-|               7 |  |  |  * QWindow::type()
-|               2 |  |  |  * QWindow::modality()
-|               1 |  |  |  * QGuiApplication::modalWindow()
-|               1 |  |  * QHideEvent::QHideEvent()
-|               1 |  |  * QHideEvent::~QHideEvent()
-|               2 |  |  * QRegion::operator+=(const QRect &)
-|               1 |  |  * QRegion::boundingRect()
-|              15 |  |  * QRegion::~QRegion()
-|               2 |  |  * QScreen::virtualSiblings()
-|               2 |  |  * QWindow::screen()
-|               1 |  |  * QScreen::handle()
-|               1 |  |  * QBackingStore::QBackingStore(QWindow *)
-|               1 |  |  |  * QImage::QImage()
-|               1 |  |  |  * QWindow::screen()
-|               1 |  |  |  * QScreen::handle()
-|               1 |  |  * QGuiApplication::windowIcon()
-|               1 |  |  * QWindow::setIcon(const QIcon &)
-|               1 |  |  |  * QIcon::isNull()
-|               2 |  |  * QIcon::~QIcon()
-|               2 |  |  * QGuiApplication::font()
-|               1 |  |  * QFont::isCopyOf(const QFont &)
-|               1 |  |  * QMoveEvent::QMoveEvent(const QPoint &, const QPoint &)
-|               2 |  |  * QGuiApplication::focusObject()
-|               1 |  |  * QMoveEvent::~QMoveEvent()
-|               1 |  |  * QResizeEvent::QResizeEvent(const QSize &, const QSize &)
-|               1 |  |  * QResizeEvent::~QResizeEvent()
-|               1 |  |  * QShowEvent::QShowEvent()
-|               1 |  |  * QRegion::QRegion(const QRect &, QRegion::RegionType)
-|               1 |  |  * QRegion::QRegion(const QRegion &)
-|               2 |  |  * QWindow::geometry()
-|               1 |  |  * QWindow::setCursor(const QCursor &)
-|               2 |  |  |  * QWindow::handle()
-|               2 |  |  |  * QCursor::shape()
-|               1 |  |  * QCursor::~QCursor()
-|               1 |  |  * qt_region_strictContains(const QRegion &, const QRect &)
-|               1 |  |  * QAccessible::updateAccessibility(QAccessibleEvent *)
-|               1 |  |  |  * QAccessibleObject::QAccessibleObject(QObject *)
-|               3 |  |  |  * QAccessibleObject::object()
-|               1 |  |  |  * QAccessibleObject::isValid()
-|               1 |  |  |  * QGuiApplication::platformNativeInterface()
-|               1 |  |  * QAccessibleEvent::~QAccessibleEvent()
-|               1 |  |  * QShowEvent::~QShowEvent()
-|               1 |  |  * QGuiApplication::exec()
-|              72 |  |  |  * QColor::setRgb(int, int, int, int)
-|               1 |  |  |  * QIcon::themeName()
-|               4 |  |  |  * QGuiApplication::font()
-|               2 |  |  |  * QFont::isCopyOf(const QFont &)
-|               4 |  |  |  * QFont::~QFont()
-|               4 |  |  |  * QGuiApplication::palette()
+|               1 |  |  |  * QScreen::depth()
+|               4 |  |  |  * QFont::QFont(const QString &, int, int, bool)
+|               4 |  |  |  * QFont::setStyleHint(QFont::StyleHint, QFont::StyleStrategy)
+|               4 |  |  |  * QFont::fromString(const QString &)
+|              22 |  |  |  * QFont::QFont(const QFont &)
+|               1 |  |  |  * QStylePlugin::QStylePlugin(QObject *)
+|               1 |  |  |  * QCommonStyle::QCommonStyle()
+|               1 |  |  |  |  * QIcon::QIcon()
+|              18 |  |  |  * QBrush::QBrush()
+|               2 |  |  |  * QGuiApplication::platformNativeInterface()
+|               2 |  |  |  * QApplication::startDragDistance()
+|               2 |  |  |  |  * QGuiApplication::styleHints()
+|               2 |  |  |  |  * QStyleHints::startDragDistance()
+|               2 |  |  |  * QApplication::startDragTime()
+|               2 |  |  |  |  * QGuiApplication::styleHints()
+|               2 |  |  |  |  * QStyleHints::startDragTime()
+|               9 |  |  |  * QBrush::QBrush(const QBrush &)
+|              18 |  |  |  * QBrush::~QBrush()
+|               9 |  |  |  * QBrush::operator=(const QBrush &)
+|               2 |  |  |  * QGuiApplication::palette()
+|               7 |  |  |  * QPalette::~QPalette()
+|               1 |  |  |  * QApplication::topLevelWidgets()
+|               1 |  |  |  * QGuiApplication::devicePixelRatio()
+|               1 |  |  |  * QPixmap::QPixmap(int, int)
+|              10 |  |  |  * QPixmap::setDevicePixelRatio(qreal)
+|               1 |  |  |  * QColor::QColor(Qt::GlobalColor)
+|               1 |  |  |  * QPixmap::fill(const QColor &)
+|               1 |  |  |  * QRadialGradient::QRadialGradient(qreal, qreal, qreal)
+|              11 |  |  |  * QColor::setAlpha(int)
+|              11 |  |  |  * QGradient::setColorAt(qreal, const QColor &)
+|               1 |  |  |  * QPainter::QPainter(QPaintDevice *)
+|               1 |  |  |  * QPainter::setRenderHint(QPainter::RenderHint, bool)
+|               1 |  |  |  * QBrush::QBrush(const QGradient &)
+|               1 |  |  |  * QPixmap::rect()
+|               1 |  |  |  * QPainter::fillRect(const QRect &, const QBrush &)
+|               1 |  |  |  * QPainter::setPen(Qt::PenStyle)
+|               1 |  |  |  * QBrush::QBrush(Qt::GlobalColor, Qt::BrushStyle)
+|               1 |  |  |  * QPainter::setBrush(const QBrush &)
+|               1 |  |  |  * QPainter::setCompositionMode(QPainter::CompositionMode)
+|               1 |  |  |  * QPainter::drawRoundedRect(const QRectF &, qreal, qreal, Qt::SizeMode)
+|               1 |  |  |  * QPainter::end()
+|               1 |  |  |  * QPixmap::isNull()
+|               1 |  |  |  * QPixmap::width()
+|              11 |  |  |  * QPixmap::devicePixelRatio()
+|               1 |  |  |  * QPixmap::height()
+|               9 |  |  |  * QPixmap::copy(const QRect &)
+|               9 |  |  |  * QPixmap::QPixmap(const QPixmap &)
+|              10 |  |  |  * QPixmap::~QPixmap()
+|               1 |  |  |  * QPainter::~QPainter()
+|               1 |  |  |  * QPalette::resolve(const QPalette &)
+|               2 |  |  |  * QPalette::operator=(const QPalette &)
+|               2 |  |  |  * QPalette::QPalette(const QPalette &)
+|               1 |  |  |  * QCommonStyle::polish(QPalette &)
 |               2 |  |  |  * QPalette::isCopyOf(const QPalette &)
-|               4 |  |  |  * QPalette::~QPalette()
-|               8 |  |  |  * QRegion::QRegion(const QRect &, QRegion::RegionType)
-|              63 |  |  |  * QRegion::~QRegion()
-|               2 |  |  |  * QRegion::operator|=(const QRegion &)
-|              18 |  |  |  * QRegion::QRegion()
-|              11 |  |  |  * QWindow::parent()
-|              14 |  |  |  * QWindow::handle()
-|               1 |  |  |  * QRegion::operator&(const QRect &)
-|               6 |  |  |  * qt_region_strictContains(const QRegion &, const QRect &)
-|               1 |  |  |  * QAccessible::queryAccessibleInterface(QObject *)
-|               1 |  |  |  * QWindow::windowState()
-|               3 |  |  |  * QWindow::geometry()
-|               2 |  |  |  * QWindow::frameMargins()
-|               2 |  |  |  * QWindow::isExposed()
-|               2 |  |  |  * QRegion::isNull()
-|               8 |  |  |  * QRegion::operator+=(const QRegion &)
-|               5 |  |  |  * QBackingStore::size()
-|               1 |  |  |  * QRegion::QRegion(int, int, int, int, QRegion::RegionType)
-|               1 |  |  |  * QBackingStore::resize(const QSize &)
+|               1 |  |  |  * QCommonStyle::polish(QApplication *)
+|               1 |  |  |  * QAccessible::installFactory(InterfaceFactory)
+|               1 |  |  * QWidget::QWidget(QWidget *, Qt::WindowFlags)
+|               2 |  |  |  * QRegion::QRegion()
+|               1 |  |  |  * QPalette::QPalette()
+|               1 |  |  |  * QFont::QFont()
+|               1 |  |  |  * QGuiApplication::layoutDirection()
+|               1 |  |  |  * QBrush::isOpaque()
+|               1 |  |  |  * QFont::QFont(const QFont &, QPaintDevice *)
+|               2 |  |  |  |  * QGuiApplication::primaryScreen()
+|               1 |  |  |  |  * QScreen::logicalDotsPerInchY()
+|               1 |  |  |  * QFont::~QFont()
+|               1 |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  * QImage::QImage()
+|               1 |  |  * QWidget::show()
+|               3 |  |  |  * QBrush::isOpaque()
+|              14 |  |  |  * QRegion::QRegion()
+|               3 |  |  |  * QSurfaceFormat::QSurfaceFormat()
+|               3 |  |  |  * QIcon::QIcon()
+|               4 |  |  |  * QCursor::QCursor(Qt::CursorShape)
+|               3 |  |  |  * QWindow::setSurfaceType(QSurface::SurfaceType)
+|               3 |  |  |  * QWindow::setFlags(Qt::WindowFlags)
+|               3 |  |  |  * QWindow::resize(const QSize &)
+|               5 |  |  |  * QWindow::isTopLevel()
+|               2 |  |  |  * QPalette::QPalette()
+|               2 |  |  |  * QFont::QFont()
+|               7 |  |  |  * QGuiApplication::screens()
+|               4 |  |  |  * QWindow::setScreen(QScreen *)
+|               3 |  |  |  * QWindow::requestedFormat()
+|               3 |  |  |  * QWindow::surfaceType()
+|               3 |  |  |  * QWindow::setFormat(const QSurfaceFormat &)
+|               3 |  |  |  * qt_window_private(QWindow *)
+|               3 |  |  |  * QWindow::create()
+|               3 |  |  |  |  * QWindow::screen()
+|               3 |  |  |  |  * QScreen::handle()
+|              10 |  |  |  |  * QWindow::type()
+|               3 |  |  |  |  * QSurfaceFormat::QSurfaceFormat()
+|               3 |  |  |  |  * QRegion::QRegion()
+|               3 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               3 |  |  |  |  |  * QWindow::isTopLevel()
+|               3 |  |  |  |  |  * QGuiApplication::desktopFileName()
+|               3 |  |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               2 |  |  |  |  * QSurface::supportsOpenGL()
+|               1 |  |  |  |  * QWindow::requestedFormat()
+|               2 |  |  |  |  * QSurfaceFormat::QSurfaceFormat(const QSurfaceFormat &)
+|               3 |  |  |  |  * QSurfaceFormat::redBufferSize()
+|               2 |  |  |  |  * QSurfaceFormat::setRedBufferSize(int)
+|               3 |  |  |  |  * QSurfaceFormat::greenBufferSize()
+|               2 |  |  |  |  * QSurfaceFormat::setGreenBufferSize(int)
+|               3 |  |  |  |  * QSurfaceFormat::blueBufferSize()
+|               2 |  |  |  |  * QSurfaceFormat::setBlueBufferSize(int)
+|               1 |  |  |  |  * QSurfaceFormat::operator=(const QSurfaceFormat &)
+|               3 |  |  |  |  * QSurfaceFormat::~QSurfaceFormat()
+|               2 |  |  |  |  * QSurfaceFormat::alphaBufferSize()
+|               1 |  |  |  |  * QSurfaceFormat::swapBehavior()
+|               1 |  |  |  |  * QSurfaceFormat::testOption(QSurfaceFormat::FormatOption)
+|               1 |  |  |  |  * QSurfaceFormat::depthBufferSize()
+|               1 |  |  |  |  * QSurfaceFormat::stencilBufferSize()
+|               1 |  |  |  |  * QSurfaceFormat::samples()
+|               1 |  |  |  |  * QSurfaceFormat::setAlphaBufferSize(int)
+|               1 |  |  |  |  * QSurfaceFormat::setDepthBufferSize(int)
+|               1 |  |  |  |  * QSurfaceFormat::setStencilBufferSize(int)
+|               1 |  |  |  |  * QSurfaceFormat::setStereo(bool)
+|               5 |  |  |  |  * QWindow::flags()
+|               2 |  |  |  |  * qt_window_private(QWindow *)
+|               1 |  |  |  |  * QGuiApplication::sessionId()
+|               1 |  |  |  |  * QWindow::windowState()
+|               1 |  |  |  |  * QWindow::title()
+|               1 |  |  |  |  * QWindow::isTopLevel()
+|               1 |  |  |  |  * QWindow::icon()
+|               1 |  |  |  |  * QIcon::isNull()
+|               1 |  |  |  |  * QIcon::~QIcon()
+|               3 |  |  |  * QWindow::flags()
+|              13 |  |  |  * QWindow::handle()
+|               3 |  |  |  * QWindow::setTitle(const QString &)
+|               3 |  |  |  * QGuiApplication::platformFunction(const QByteArray &)
+|               3 |  |  |  * QWindow::winId()
+|              12 |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               2 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  * QCommonStyle::polish(QWidget *)
+|               2 |  |  |  |  * QGuiApplication::font()
+|               1 |  |  |  |  * QFont::isCopyOf(const QFont &)
+|               2 |  |  |  |  * QFont::~QFont()
+|               2 |  |  |  |  * QGuiApplication::palette()
+|               1 |  |  |  |  * QPalette::isCopyOf(const QPalette &)
+|               2 |  |  |  |  * QPalette::~QPalette()
+|               2 |  |  |  |  * QGuiApplication::focusObject()
+|               3 |  |  |  * QSurfaceFormat::~QSurfaceFormat()
+|               3 |  |  |  * QWindow::setModality(Qt::WindowModality)
+|               3 |  |  |  * QWindow::frameMargins()
+|               2 |  |  |  * QFont::QFont(const QFont &, QPaintDevice *)
+|               2 |  |  |  |  * QWindow::screen()
+|               2 |  |  |  |  * QScreen::logicalDotsPerInchY()
+|               2 |  |  |  * QFont::~QFont()
+|               3 |  |  |  * QScreen::geometry()
+|               2 |  |  |  * QWindow::setVisible(bool)
+|               1 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  |  * QWindow::qt_metacast(const char *)
+|               2 |  |  |  |  * QWindow::handle()
+|               2 |  |  |  |  * QCursor::shape()
+|               1 |  |  |  |  * QWindow::isTopLevel()
+|               3 |  |  |  |  * QWindow::windowState()
+|               5 |  |  |  |  * QWindow::flags()
+|               2 |  |  |  |  * qt_window_private(QWindow *)
+|               7 |  |  |  |  * QWindow::type()
+|               2 |  |  |  |  * QWindow::modality()
+|               1 |  |  |  |  * QGuiApplication::modalWindow()
+|               1 |  |  |  * QHideEvent::QHideEvent()
+|               1 |  |  |  * QHideEvent::~QHideEvent()
+|               2 |  |  |  * QRegion::operator+=(const QRect &)
+|               1 |  |  |  * QRegion::boundingRect()
+|               2 |  |  |  * QRegion::~QRegion()
+|               2 |  |  |  * QScreen::virtualSiblings()
+|               2 |  |  |  * QWindow::screen()
+|               1 |  |  |  * QScreen::handle()
+|               1 |  |  |  * QBackingStore::QBackingStore(QWindow *)
+|               1 |  |  |  |  * QImage::QImage()
 |               1 |  |  |  |  * QWindow::screen()
 |               1 |  |  |  |  * QScreen::handle()
-|               1 |  |  |  |  * QWindow::handle()
-|               1 |  |  |  |  * QImage::QImage()
-|               2 |  |  |  |  * QRegion::QRegion()
-|               2 |  |  |  |  * QImage::toPixelFormat(QImage::Format)
-|               1 |  |  |  |  * QImage::QImage(uchar *, int, int, int, QImage::Format, QImageCleanupFunction, void *)
-|               1 |  |  |  |  * QImage::format()
-|               1 |  |  |  |  * QImage::size()
-|              22 |  |  |  * QRegion::QRegion(const QRegion &)
-|               4 |  |  |  * qt_window_private(QWindow *)
-|               4 |  |  |  * QBackingStore::beginPaint(const QRegion &)
-|               4 |  |  |  |  * QRegion::QRegion(const QRegion &)
-|               4 |  |  |  |  * QRegion::~QRegion()
-|               4 |  |  |  |  * QRegion::intersects(const QRegion &)
-|               3 |  |  |  |  * QRegion::QRegion()
-|               4 |  |  |  * QBackingStore::paintDevice()
-|               7 |  |  |  * QRegion::operator&=(const QRect &)
-|               4 |  |  |  * QPainter::QPainter(QPaintDevice *)
-|               2 |  |  |  |  * QGuiApplication::focusWindow()
-|               4 |  |  |  |  * QWindow::handle()
-|               4 |  |  |  |  * QPen::QPen(const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle)
-|               4 |  |  |  |  * QPen::~QPen()
-|               4 |  |  |  |  * QBrush::operator=(const QBrush &)
-|               4 |  |  |  |  * QFont::QFont(const QFont &, QPaintDevice *)
-|               4 |  |  |  |  |  * QWindow::screen()
-|               4 |  |  |  |  |  * QScreen::logicalDotsPerInchY()
-|               8 |  |  |  |  * QFont::operator=(const QFont &)
-|               4 |  |  |  |  * QFont::~QFont()
-|               6 |  |  |  * QGuiApplication::focusWindow()
-|               8 |  |  |  * QBrush::QBrush(const QBrush &)
-|               4 |  |  |  * QPainter::compositionMode()
-|               8 |  |  |  * QPainter::setCompositionMode(QPainter::CompositionMode)
-|               4 |  |  |  * QBrush::gradient()
-|               4 |  |  |  * QRegion::rects()
-|               4 |  |  |  * QPainter::fillRect(const QRect &, const QBrush &)
-|               8 |  |  |  * QBrush::~QBrush()
-|               4 |  |  |  * QPainter::~QPainter()
-|               4 |  |  |  * QRegion::translated(int, int)
-|               9 |  |  |  * QTransform::QTransform()
-|               8 |  |  |  * QTransform::scale(qreal, qreal)
-|               8 |  |  |  * QTransform::map(const QRegion &)
-|               4 |  |  |  * QPaintEvent::QPaintEvent(const QRegion &)
-|               4 |  |  |  * QPaintEvent::~QPaintEvent()
-|               4 |  |  |  * QBackingStore::endPaint()
-|               4 |  |  |  |  * QRegion::QRegion(const QRegion &)
-|               8 |  |  |  |  * QRegion::~QRegion()
-|               4 |  |  |  |  * QRegion::intersects(const QRegion &)
-|               4 |  |  |  |  * QWindow::handle()
-|               5 |  |  |  * QBackingStore::flush(const QRegion &, QWindow *, const QPoint &)
-|              10 |  |  |  |  * QImage::size()
-|               5 |  |  |  |  * QRegion::QRegion(const QRegion &)
-|               5 |  |  |  |  * QWindow::geometry()
-|              10 |  |  |  |  * QRegion::operator&=(const QRect &)
-|              10 |  |  |  |  * QRegion::boundingRect()
-|               5 |  |  |  |  * QWindow::handle()
-|               5 |  |  |  |  * QRegion::rects()
-|               5 |  |  |  |  * QRegion::translated(int, int)
-|               5 |  |  |  |  * QRegion::operator|=(const QRegion &)
-|              15 |  |  |  |  * QRegion::~QRegion()
-|               5 |  |  |  |  * QRegion::QRegion()
-|               4 |  |  |  * QFocusEvent::reason()
-|               4 |  |  |  * QAccessible::updateAccessibility(QAccessibleEvent *)
-|              16 |  |  |  |  * QAccessibleObject::object()
-|               8 |  |  |  |  * QAccessibleObject::isValid()
-|               3 |  |  |  * QAccessibleStateChangeEvent::~QAccessibleStateChangeEvent()
-|               2 |  |  |  * QWindow::isTopLevel()
-|               4 |  |  |  * QPalette::isEqual(QPalette::ColorGroup, QPalette::ColorGroup)
-|               4 |  |  |  * QRegion::operator=(const QRegion &)
-|               2 |  |  |  * QGuiApplication::styleHints()
-|               2 |  |  |  * QStyleHints::tabFocusBehavior()
-|               1 |  |  |  * QGuiApplication::focusObject()
-|               1 |  |  |  * QTransform::translate(qreal, qreal)
-|               3 |  |  |  * QGuiApplication::inputMethod()
-|               1 |  |  |  * QInputMethod::setInputItemTransform(const QTransform &)
-|               1 |  |  |  * QInputMethod::setInputItemRectangle(const QRectF &)
-|               1 |  |  |  * QInputMethod::update(Qt::InputMethodQueries)
-|               3 |  |  |  * QRegion::boundingRect()
-|               3 |  |  |  * QRegion::intersects(const QRect &)
-|               1 |  |  |  * QKeyEvent::QKeyEvent(QEvent::Type, int, Qt::KeyboardModifiers, quint32, quint32, quint32, const QString &, bool, ushort)
-|               1 |  |  |  * QKeyEvent::~QKeyEvent()
-|               1 |  |  |  * QCloseEvent::QCloseEvent()
-|               1 |  |  |  * QCloseEvent::~QCloseEvent()
-|               1 |  |  |  * QRegion::operator+=(const QRect &)
-|               1 |  |  |  * QWindow::setVisible(bool)
-|               1 |  |  |  |  * QWindow::isModal()
-|               1 |  |  |  * QHideEvent::QHideEvent()
+|               1 |  |  |  * QGuiApplication::windowIcon()
+|               1 |  |  |  * QWindow::setIcon(const QIcon &)
+|               1 |  |  |  |  * QIcon::isNull()
+|               1 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  * QIcon::~QIcon()
+|               1 |  |  |  * QMoveEvent::QMoveEvent(const QPoint &, const QPoint &)
+|               1 |  |  |  * QMoveEvent::~QMoveEvent()
+|               1 |  |  |  * QResizeEvent::QResizeEvent(const QSize &, const QSize &)
+|               1 |  |  |  * QResizeEvent::~QResizeEvent()
+|               1 |  |  |  * QShowEvent::QShowEvent()
+|               1 |  |  |  * QRegion::QRegion(const QRect &, QRegion::RegionType)
+|               1 |  |  |  * QRegion::QRegion(const QRegion &)
+|               2 |  |  |  * QWindow::geometry()
+|               1 |  |  |  * QWindow::setCursor(const QCursor &)
+|               2 |  |  |  |  * QWindow::handle()
+|               2 |  |  |  |  * QCursor::shape()
+|               1 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  * QCursor::~QCursor()
+|               1 |  |  |  * qt_region_strictContains(const QRegion &, const QRect &)
+|               1 |  |  |  * QAccessible::updateAccessibility(QAccessibleEvent *)
+|               1 |  |  |  |  * QAccessibleObject::QAccessibleObject(QObject *)
+|               3 |  |  |  |  * QAccessibleObject::object()
+|               1 |  |  |  |  * QAccessibleObject::isValid()
+|               4 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  * QGuiApplication::platformNativeInterface()
 |               1 |  |  |  * QAccessibleEvent::~QAccessibleEvent()
-|               1 |  |  |  * QHideEvent::~QHideEvent()
-|               3 |  |  * QWindow::focusObjectChanged(QObject *)
-|               1 |  |  * QAccessibleActionInterface::~QAccessibleActionInterface()
-|               1 |  |  * QBackingStore::~QBackingStore()
-|               2 |  |  |  * QRegion::~QRegion()
-|               3 |  |  * QWindow::destroy()
-|               3 |  |  |  * QWindow::type()
-|               2 |  |  |  * QWindow::parent()
-|               3 |  |  |  * QRegion::~QRegion()
-|               3 |  |  |  * QSurfaceFormat::~QSurfaceFormat()
-|               3 |  |  * QWindow::~QWindow()
-|               3 |  |  |  * QCursor::~QCursor()
-|               3 |  |  |  * QRegion::~QRegion()
-|               3 |  |  |  * QIcon::~QIcon()
-|               3 |  |  |  * QSurfaceFormat::~QSurfaceFormat()
-|               3 |  |  * QPaintDevice::~QPaintDevice()
-|               1 |  |  * QPixmapCache::clear()
-|               1 |  |  * QGuiApplication::~QGuiApplication()
-|               1 |  |  |  * QGuiApplication::notify(QObject *, QEvent *)
-|               4 |  |  |  * QFont::~QFont()
+|               1 |  |  |  * QShowEvent::~QShowEvent()
+|               1 |  |  * QApplication::exec()
+|               1 |  |  |  * QGuiApplication::exec()
+|             161 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|              49 |  |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               4 |  |  |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               2 |  |  |  |  |  |  * QCommonStyle::polish(QWidget *)
+|               4 |  |  |  |  |  |  * QGuiApplication::font()
+|               2 |  |  |  |  |  |  * QFont::isCopyOf(const QFont &)
+|               4 |  |  |  |  |  |  * QFont::~QFont()
+|               4 |  |  |  |  |  |  * QGuiApplication::palette()
+|               2 |  |  |  |  |  |  * QPalette::isCopyOf(const QPalette &)
+|               4 |  |  |  |  |  |  * QPalette::~QPalette()
+|               1 |  |  |  |  |  |  * QGuiApplication::focusObject()
+|              22 |  |  |  |  |  |  * QTransform::QTransform()
+|               1 |  |  |  |  |  |  * QTransform::translate(qreal, qreal)
+|               3 |  |  |  |  |  |  * QGuiApplication::inputMethod()
+|               1 |  |  |  |  |  |  * QInputMethod::setInputItemTransform(const QTransform &)
+|               1 |  |  |  |  |  |  * QInputMethod::setInputItemRectangle(const QRectF &)
+|               1 |  |  |  |  |  |  * QInputMethod::update(Qt::InputMethodQueries)
+|              21 |  |  |  |  |  |  * QMouseEvent::source()
+|              21 |  |  |  |  |  |  * QMouseEvent::QMouseEvent(QEvent::Type, const QPointF &, const QPointF &, const QPointF &, Qt::MouseButton, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::MouseEventSource)
+|              21 |  |  |  |  |  |  * QMouseEvent::flags()
+|              21 |  |  |  |  |  |  * QMouseEvent::~QMouseEvent()
+|              23 |  |  |  |  |  |  * QWindow::handle()
+|              21 |  |  |  |  |  |  * qt_window_private(QWindow *)
+|              21 |  |  |  |  |  |  * QWindow::mapFromGlobal(const QPoint &)
+|              21 |  |  |  |  |  |  * QTransform::inverted(bool *)
+|              21 |  |  |  |  |  |  * QTransform::map(const QPoint &)
+|               1 |  |  |  |  |  |  * QGuiApplication::focusWindow()
+|               1 |  |  |  |  |  |  * QWindow::parent()
+|               1 |  |  |  |  |  |  * QPalette::isEqual(QPalette::ColorGroup, QPalette::ColorGroup)
+|               1 |  |  |  |  |  |  * qt_region_strictContains(const QRegion &, const QRect &)
+|               1 |  |  |  |  |  |  * QRegion::QRegion(const QRect &, QRegion::RegionType)
+|               1 |  |  |  |  |  |  * QRegion::operator=(const QRegion &)
+|               1 |  |  |  |  |  |  * QRegion::~QRegion()
+|              72 |  |  |  |  |  * QColor::setRgb(int, int, int, int)
+|               1 |  |  |  |  |  * QIcon::themeName()
+|               7 |  |  |  |  |  * QRegion::QRegion(const QRect &, QRegion::RegionType)
+|              62 |  |  |  |  |  * QRegion::~QRegion()
+|               2 |  |  |  |  |  * QRegion::operator|=(const QRegion &)
+|              19 |  |  |  |  |  * QRegion::QRegion()
+|              10 |  |  |  |  |  * QWindow::parent()
+|              14 |  |  |  |  |  * QWindow::handle()
+|               1 |  |  |  |  |  * QRegion::operator&(const QRect &)
+|               5 |  |  |  |  |  * qt_region_strictContains(const QRegion &, const QRect &)
+|               1 |  |  |  |  |  * QAccessible::queryAccessibleInterface(QObject *)
+|               1 |  |  |  |  |  * QWindow::windowState()
+|               3 |  |  |  |  |  * QWindow::geometry()
+|               2 |  |  |  |  |  * QWindow::frameMargins()
+|               2 |  |  |  |  |  * QWindow::isExposed()
+|               2 |  |  |  |  |  * QRegion::isNull()
+|               8 |  |  |  |  |  * QRegion::operator+=(const QRegion &)
+|               5 |  |  |  |  |  * QBackingStore::size()
+|               1 |  |  |  |  |  * QRegion::QRegion(int, int, int, int, QRegion::RegionType)
+|               1 |  |  |  |  |  * QBackingStore::resize(const QSize &)
+|               1 |  |  |  |  |  |  * QWindow::screen()
+|               1 |  |  |  |  |  |  * QScreen::handle()
+|               1 |  |  |  |  |  |  * QWindow::handle()
+|               1 |  |  |  |  |  |  * QImage::QImage()
+|               2 |  |  |  |  |  |  * QRegion::QRegion()
+|               2 |  |  |  |  |  |  * QImage::toPixelFormat(QImage::Format)
+|               1 |  |  |  |  |  |  * QImage::QImage(uchar *, int, int, int, QImage::Format, QImageCleanupFunction, void *)
+|               1 |  |  |  |  |  |  * QImage::format()
+|               1 |  |  |  |  |  |  * QImage::size()
+|              22 |  |  |  |  |  * QRegion::QRegion(const QRegion &)
+|               6 |  |  |  |  |  * qt_window_private(QWindow *)
+|               4 |  |  |  |  |  * QBackingStore::beginPaint(const QRegion &)
+|               4 |  |  |  |  |  |  * QRegion::QRegion(const QRegion &)
+|               4 |  |  |  |  |  |  * QRegion::~QRegion()
+|               4 |  |  |  |  |  |  * QRegion::intersects(const QRegion &)
+|               3 |  |  |  |  |  |  * QRegion::QRegion()
+|               4 |  |  |  |  |  * QBackingStore::paintDevice()
+|               7 |  |  |  |  |  * QRegion::operator&=(const QRect &)
+|               4 |  |  |  |  |  * QPainter::QPainter(QPaintDevice *)
+|               2 |  |  |  |  |  |  * QGuiApplication::focusWindow()
+|               4 |  |  |  |  |  |  * QWindow::handle()
+|               4 |  |  |  |  |  |  * QPen::QPen(const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle)
+|               4 |  |  |  |  |  |  * QPen::~QPen()
+|               4 |  |  |  |  |  |  * QBrush::operator=(const QBrush &)
+|               4 |  |  |  |  |  |  * QFont::QFont(const QFont &, QPaintDevice *)
+|               4 |  |  |  |  |  |  |  * QWindow::screen()
+|               4 |  |  |  |  |  |  |  * QScreen::logicalDotsPerInchY()
+|               8 |  |  |  |  |  |  * QFont::operator=(const QFont &)
+|               4 |  |  |  |  |  |  * QFont::~QFont()
+|               5 |  |  |  |  |  * QGuiApplication::focusWindow()
+|               8 |  |  |  |  |  * QBrush::QBrush(const QBrush &)
+|               4 |  |  |  |  |  * QPainter::compositionMode()
+|               8 |  |  |  |  |  * QPainter::setCompositionMode(QPainter::CompositionMode)
+|               4 |  |  |  |  |  * QBrush::gradient()
+|               4 |  |  |  |  |  * QRegion::rects()
+|               4 |  |  |  |  |  * QPainter::fillRect(const QRect &, const QBrush &)
+|               8 |  |  |  |  |  * QBrush::~QBrush()
+|               4 |  |  |  |  |  * QPainter::~QPainter()
+|               4 |  |  |  |  |  * QRegion::translated(int, int)
+|              10 |  |  |  |  |  * QTransform::QTransform()
+|               8 |  |  |  |  |  * QTransform::scale(qreal, qreal)
+|               8 |  |  |  |  |  * QTransform::map(const QRegion &)
+|               4 |  |  |  |  |  * QPaintEvent::QPaintEvent(const QRegion &)
+|               4 |  |  |  |  |  * QPaintEvent::~QPaintEvent()
+|               4 |  |  |  |  |  * QBackingStore::endPaint()
+|               4 |  |  |  |  |  |  * QRegion::QRegion(const QRegion &)
+|               8 |  |  |  |  |  |  * QRegion::~QRegion()
+|               4 |  |  |  |  |  |  * QRegion::intersects(const QRegion &)
+|               4 |  |  |  |  |  |  * QWindow::handle()
+|               5 |  |  |  |  |  * QBackingStore::flush(const QRegion &, QWindow *, const QPoint &)
+|              10 |  |  |  |  |  |  * QImage::size()
+|               5 |  |  |  |  |  |  * QRegion::QRegion(const QRegion &)
+|               5 |  |  |  |  |  |  * QWindow::geometry()
+|              10 |  |  |  |  |  |  * QRegion::operator&=(const QRect &)
+|              10 |  |  |  |  |  |  * QRegion::boundingRect()
+|               5 |  |  |  |  |  |  * QWindow::handle()
+|               5 |  |  |  |  |  |  * QRegion::rects()
+|               5 |  |  |  |  |  |  * QRegion::translated(int, int)
+|               5 |  |  |  |  |  |  * QRegion::operator|=(const QRegion &)
+|              15 |  |  |  |  |  |  * QRegion::~QRegion()
+|               5 |  |  |  |  |  |  * QRegion::QRegion()
+|               4 |  |  |  |  |  * QFocusEvent::reason()
+|               4 |  |  |  |  |  * QAccessible::updateAccessibility(QAccessibleEvent *)
+|              16 |  |  |  |  |  |  * QAccessibleObject::object()
+|               8 |  |  |  |  |  |  * QAccessibleObject::isValid()
+|               3 |  |  |  |  |  * QAccessibleStateChangeEvent::~QAccessibleStateChangeEvent()
+|               3 |  |  |  |  |  * QPalette::isEqual(QPalette::ColorGroup, QPalette::ColorGroup)
+|               3 |  |  |  |  |  * QRegion::operator=(const QRegion &)
+|               3 |  |  |  |  |  * QRegion::boundingRect()
+|               3 |  |  |  |  |  * QRegion::intersects(const QRect &)
+|               4 |  |  |  |  |  * QApplication::activeWindow()
+|               4 |  |  |  |  |  * QWidget::focusPolicy()
+|               1 |  |  |  |  |  * QKeyEvent::QKeyEvent(QEvent::Type, int, Qt::KeyboardModifiers, quint32, quint32, quint32, const QString &, bool, ushort)
+|               1 |  |  |  |  |  * QKeyEvent::~QKeyEvent()
+|               2 |  |  |  |  |  * QWindow::mapFromGlobal(const QPoint &)
+|               2 |  |  |  |  |  * QTransform::inverted(bool *)
+|               2 |  |  |  |  |  * QTransform::map(const QPoint &)
+|               2 |  |  |  |  |  * QGuiApplication::modalWindow()
+|               1 |  |  |  |  |  * QEnterEvent::QEnterEvent(const QPointF &, const QPointF &, const QPointF &)
+|               1 |  |  |  |  |  * QEnterEvent::~QEnterEvent()
+|              21 |  |  |  |  |  * QMouseEvent::source()
+|              21 |  |  |  |  |  * QMouseEvent::QMouseEvent(QEvent::Type, const QPointF &, const QPointF &, const QPointF &, Qt::MouseButton, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::MouseEventSource)
+|              21 |  |  |  |  |  * QMouseEvent::~QMouseEvent()
+|               1 |  |  |  |  |  * QCloseEvent::QCloseEvent()
+|               1 |  |  |  |  |  * QCloseEvent::~QCloseEvent()
+|               1 |  |  |  |  |  * QRegion::operator+=(const QRect &)
+|               1 |  |  |  |  |  * QWindow::setVisible(bool)
+|               1 |  |  |  |  |  |  * QWindow::isModal()
+|               1 |  |  |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  |  * QHideEvent::QHideEvent()
+|               1 |  |  |  |  |  * QAccessibleEvent::~QAccessibleEvent()
+|               1 |  |  |  |  |  * QHideEvent::~QHideEvent()
+|               1 |  |  |  |  * QRegion::~QRegion()
+|               2 |  |  |  |  * QWindow::isTopLevel()
+|               2 |  |  |  |  * QGuiApplication::styleHints()
+|               2 |  |  |  |  * QStyleHints::tabFocusBehavior()
+|               1 |  |  * QWidget::~QWidget()
+|               3 |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  * QWindow::focusObjectChanged(QObject *)
+|               1 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  * QRegion::QRegion()
+|               7 |  |  |  * QRegion::~QRegion()
+|               1 |  |  |  * QAccessibleActionInterface::~QAccessibleActionInterface()
+|               1 |  |  |  * QBackingStore::~QBackingStore()
+|               2 |  |  |  |  * QRegion::~QRegion()
+|               1 |  |  |  * QWindow::destroy()
+|               1 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  * QWindow::type()
+|               2 |  |  |  |  * QWindow::parent()
+|               1 |  |  |  |  * QRegion::~QRegion()
+|               1 |  |  |  |  * QSurfaceFormat::~QSurfaceFormat()
+|               1 |  |  |  * QWindow::~QWindow()
+|               1 |  |  |  |  * QCursor::~QCursor()
+|               1 |  |  |  |  * QRegion::~QRegion()
+|               1 |  |  |  |  * QIcon::~QIcon()
+|               1 |  |  |  |  * QSurfaceFormat::~QSurfaceFormat()
+|               1 |  |  |  * QPaintDevice::~QPaintDevice()
+|               1 |  |  |  * QFont::~QFont()
 |               1 |  |  |  * QPalette::~QPalette()
+|               1 |  |  * QApplication::~QApplication()
+|               2 |  |  |  * QWindow::focusObjectChanged(QObject *)
+|               3 |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               2 |  |  |  * QPaintDevice::~QPaintDevice()
+|               2 |  |  |  * QWindow::destroy()
+|               2 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               2 |  |  |  |  * QWindow::type()
+|               2 |  |  |  |  * QRegion::~QRegion()
+|               2 |  |  |  |  * QSurfaceFormat::~QSurfaceFormat()
+|               2 |  |  |  * QWindow::~QWindow()
+|               2 |  |  |  |  * QCursor::~QCursor()
+|               2 |  |  |  |  * QRegion::~QRegion()
+|               2 |  |  |  |  * QIcon::~QIcon()
+|               2 |  |  |  |  * QSurfaceFormat::~QSurfaceFormat()
+|               6 |  |  |  * QRegion::~QRegion()
+|              24 |  |  |  * QFont::~QFont()
+|               4 |  |  |  * QPalette::~QPalette()
+|               9 |  |  |  * QBrush::~QBrush()
+|               1 |  |  |  * QCommonStyle::~QCommonStyle()
+|               1 |  |  |  |  * QApplication::notify(QObject *, QEvent *)
+|               1 |  |  |  |  * QIcon::~QIcon()
+|               1 |  |  |  * QPixmapCache::clear()
+|               1 |  |  |  * QGuiApplication::~QGuiApplication()
+|               1 |  |  |  |  * QGuiApplication::notify(QObject *, QEvent *)
+|               4 |  |  |  |  * QFont::~QFont()
+|               1 |  |  |  |  * QPalette::~QPalette()
+|               1 |  * QStylePlugin::~QStylePlugin()
 
--------------------------------------------------------------------------------
+###############################################################################
+$ ll
+total 45940
+-rw-rw-r-- 1 brendel brendel     1219 Jul 31 15:29 libscorep_libwrap_qtgui_and_qtwidgets_linktime.la
+-rw-rw-r-- 1 brendel brendel      390 Jul 31 15:29 libscorep_libwrap_qtgui_and_qtwidgets_linktime.lo
+-rw-rw-r-- 1 brendel brendel 13314936 Jul 31 15:29 libscorep_libwrap_qtgui_and_qtwidgets_linktime.o
+-rw-rw-r-- 1 brendel brendel     1212 Jul 31 15:31 libscorep_libwrap_qtgui_and_qtwidgets_runtime.la
+-rw-rw-r-- 1 brendel brendel      387 Jul 31 15:30 libscorep_libwrap_qtgui_and_qtwidgets_runtime.lo
+-rw-rw-r-- 1 brendel brendel 15976160 Jul 31 15:30 libscorep_libwrap_qtgui_and_qtwidgets_runtime.o
+-rw-r--r-- 1 brendel brendel       72 Jul 31 14:17 libwrap.cc
+-rw-r--r-- 1 brendel brendel      327 Jul 31 14:18 libwrap.h
+-rw-rw-r-- 1 brendel brendel  5108335 Jul 31 14:18 libwrap.i
+-rwxrwxr-x 1 brendel brendel    13696 Jul 31 14:18 main
+-rw-r--r-- 1 brendel brendel      413 Jul 31 14:18 main.cc
+-rwxrwxr-x 1 brendel brendel    22376 Jul 31 15:33 main_linktime_wrapped
+-rwxrwxr-x 1 brendel brendel    22120 Jul 31 15:33 main_runtime_wrapped
+-rw-rw-r-- 1 brendel brendel    18746 Jul 31 14:17 Makefile
+-rw-rw-r-- 1 brendel brendel    51938 Jul 31 15:08 missing.filter
+-rw-rw-r-- 1 brendel brendel    52349 Jul 31 15:10 qtgui_and_qtwidgets.filter
+-rw-rw-r-- 1 brendel brendel      342 Jul 31 15:32 qtgui_and_qtwidgets.libwrap
+-rw-rw-r-- 1 brendel brendel   573276 Jul 31 15:10 qtgui_and_qtwidgets.nvcc.wrap
+-rw-rw-r-- 1 brendel brendel      521 Jul 31 15:32 qtgui_and_qtwidgets.summary
+-rw-rw-r-- 1 brendel brendel   407568 Jul 31 15:10 qtgui_and_qtwidgets.wrap
+-rw-r--r-- 1 brendel brendel    17886 Jul 31 14:17 README.md
+-rw-rw-r-- 1 brendel brendel  7519378 Jul 31 15:29 scorep_libwrap_qtgui_and_qtwidgets.cc
+-rw-rw-r-- 1 brendel brendel  3874277 Jul 31 15:29 scorep_libwrap_qtgui_and_qtwidgets.inc.c
+drwxr-xr-x 2 brendel brendel     4096 Jul 31 15:34 scorep-linktime
+drwxr-xr-x 2 brendel brendel     4096 Jul 31 15:34 scorep-runtime
+
+$ ll $SCOREP_DIR/share/scorep/ | grep qtgui_and_qtwidgets
+-rw-r--r-- 1 brendel brendel  52349 Jul 31 15:32 qtgui_and_qtwidgets.filter
+-rw-r--r-- 1 brendel brendel    342 Jul 31 15:32 qtgui_and_qtwidgets.libwrap
+-rw-r--r-- 1 brendel brendel 573276 Jul 31 15:32 qtgui_and_qtwidgets.nvcc.wrap
+-rw-r--r-- 1 brendel brendel    521 Jul 31 15:32 qtgui_and_qtwidgets.summary
+-rw-r--r-- 1 brendel brendel 407568 Jul 31 15:32 qtgui_and_qtwidgets.wrap
+
+$ ll $SCOREP_DIR/lib | grep qtgui_and_qtwidgets
+-rw-r--r-- 1 brendel brendel 13789412 Jul 31 15:32 libscorep_libwrap_qtgui_and_qtwidgets_linktime.a
+-rwxr-xr-x 1 brendel brendel     1220 Jul 31 15:32 libscorep_libwrap_qtgui_and_qtwidgets_linktime.la
+-rwxr-xr-x 1 brendel brendel  8750192 Jul 31 15:32 libscorep_libwrap_qtgui_and_qtwidgets_linktime.so
+-rw-r--r-- 1 brendel brendel 16386200 Jul 31 15:32 libscorep_libwrap_qtgui_and_qtwidgets_runtime.a
+-rwxr-xr-x 1 brendel brendel     1213 Jul 31 15:32 libscorep_libwrap_qtgui_and_qtwidgets_runtime.la
+-rwxr-xr-x 1 brendel brendel  8978576 Jul 31 15:32 libscorep_libwrap_qtgui_and_qtwidgets_runtime.so
+
+###############################################################################
 $ export SCOREP_ENABLE_UNWINDING=yes
 $ sudo bash -c "echo 1 > /proc/sys/kernel/perf_event_paranoid"
 $ export SCOREP_PROFILING_MAX_CALLPATH_DEPTH=50                 # needed here to avoid an error
