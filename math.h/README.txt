@@ -19,7 +19,7 @@ To use the wrapper, link your application like this before executing it:
 
 For detailed instructions consult 'README.md'.
 
--------------------------------------------------------------------------------
+###############################################################################
 $ vim libwrap.h
 
 """
@@ -38,7 +38,7 @@ $ vim libwrap.h
 #endif /* LIBWRAP_H */
 """
 
--------------------------------------------------------------------------------
+###############################################################################
 $ vim main.c
 
 """
@@ -63,7 +63,7 @@ main( int   argc,
 }
 """
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make
   CCLD      main
   CPP       libwrap.i
@@ -76,7 +76,7 @@ $ make
 Makefile:169: recipe for target 'quick-check' failed
 make: *** [quick-check] Error 1
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make check
   FOUND     acos
   MISSING   __acos
@@ -526,12 +526,12 @@ $ make check
 Makefile:283: recipe for target 'check' failed
 make: *** [check] Error 1
 
--------------------------------------------------------------------------------
+###############################################################################
 $ vim -p math.filter missing.filter uncertain.filter 
 
 # Put everything from missing.filter and uncertain.filter into math.filter
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make
   GEN       scorep_libwrap_math.c
   QUICK-CHECK
@@ -542,7 +542,7 @@ ar: `u' modifier ignored since `D' is the default (see `U')
   CCLD      libscorep_libwrap_math_runtime.la
 ar: `u' modifier ignored since `D' is the default (see `U')
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make install
   QUICK-CHECK
   GEN       math.libwrap
@@ -555,7 +555,7 @@ $ make install
   INSTALL   math.nvcc.wrap
   INSTALL   math.filter
 
--------------------------------------------------------------------------------
+###############################################################################
 $ make installcheck
   SCOREP    main_linktime_wrapped
   SCOREP    main_runtime_wrapped
@@ -571,7 +571,7 @@ $ make installcheck
 [Score-P] It should display numbers you would expect from intercepting
 [Score-P] main.c's calls to the target library.
 
--------------------------------------------------------------------------------
+###############################################################################
 $ ./main_linktime_wrapped && mv scorep-2* scorep-linktime
 1.000000
 
@@ -588,7 +588,7 @@ $ cube_info -m visits:excl scorep-runtime/profile.cubex
 |               1 |  * main
 |               1 |  |  * sqrt(double)
 
--------------------------------------------------------------------------------
+###############################################################################
 
 $ ll
 total 928
