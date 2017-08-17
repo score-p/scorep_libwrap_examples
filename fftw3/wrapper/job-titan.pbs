@@ -1,0 +1,25 @@
+#!/bin/sh
+#PBS -N fftw3-test
+#PBS -q debug
+#PBS -l walltime=3:00,nodes=1
+#PBS -o $PBS_JOBID-fftw3-test.out
+#PBS -e $PBS_JOBID-fftw3-test.err
+#PBS -A stf010
+
+set -e
+
+cd $PBS_O_WORKDIR
+dir=$PBS_O_WORKDIR
+
+sources="./main_linktime_wrapped"
+targetdir="$MEMBERWORK/stf010/fftw3-test/$PBS_JOBID"
+
+mkdir -p $targetdir
+
+cp ./main_linktime_wrapped $targetdir
+
+cd $targetdir
+
+aprun -n 1 ./main_linktime_wrapped
+
+cp -r scorep-* $PBS_O_WORKDIR/scorep-fftw3-test-$PBS_JOBID
