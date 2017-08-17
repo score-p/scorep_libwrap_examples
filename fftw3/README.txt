@@ -1,3 +1,9 @@
+# Initialize the environment for ORNL's Titan
+
+. ./load-modules-titan.sh
+
+###############################################################################
+
 # No -I, -L, -l flags necessary since Cray's `cc` adds these automatically in this case
 
 $ scorep-libwrap-init --name fftw3 -x c
