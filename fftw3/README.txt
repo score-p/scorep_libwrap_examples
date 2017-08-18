@@ -4,9 +4,7 @@
 
 ###############################################################################
 
-# No -I, -L, -l flags necessary since Cray's `cc` adds these automatically in this case
-
-$ scorep-libwrap-init --name fftw3 -x c
+$ scorep-libwrap-init --name fftw3 -x c --cppflags "-I$FFTW_INC" --ldflags "-L$FFTW_DIR" --libs "-lfftw3 -lfftw3f"
 Created working directory '.' for library wrapper fftw3.
 
 Next:
@@ -23,24 +21,9 @@ It will be used as a linking-test.
 
 To use the wrapper, link your application like this before executing it:
 
-    $ scorep --libwrap=fftw3 cc  app.c   -o app
+    $ scorep --libwrap=fftw3 cc -I/opt/cray/fftw/3.3.4.11/x86_64/include app.c -L/opt/cray/fftw/3.3.4.11/x86_64/lib -lfftw3 -lfftw3f -o app
 
 For detailed instructions consult 'README.md'.
-
-###############################################################################
-
-# Add the directory of the fftw3 includes to the filter.
-# Without this the wrapper generator would wrap every function it finds,
-# including system functions.
-
-$ vim fftw3.filter
-
-"""
-SCOREP_FILE_NAMES_BEGIN
-  EXCLUDE *
-  INCLUDE /opt/cray/fftw/3.3.4.11/x86_64/include/*
-SCOREP_FILE_NAMES_END
-"""
 
 ###############################################################################
 
@@ -76,6 +59,11 @@ $ make
   CPP       libwrap.i
   GEN       scorep_libwrap_fftw3.c
   QUICK-CHECK
+[Score-P] Error: There is mismatch between functions found in the header files
+[Score-P]        and the symbols present in the target library.
+[Score-P]        Use 'make check' to get a list of missing symbols and add
+[Score-P]        them to fftw3.filter. After that repeat this step.
+make: *** [quick-check] Error 1
 
 ###############################################################################
 
@@ -397,121 +385,6 @@ $ make install
   GEN       fftw3.summary
   INSTALL   libscorep_libwrap_fftw3_linktime.la
   INSTALL   libscorep_libwrap_fftw3_runtime.la
-[Score-P] Error: Could not find any shared libraries. I.e. the
-[Score-P]        LW_LIBLIST variable in Makefile is empty!
-[Score-P]        This can lead to a broken runtime library wrapper.
-[Score-P]        If one of the libraries specified via '--libs'
-[Score-P]        (Which is the same as the LIBS variable in Makefile)
-[Score-P]        is not installed as a shared library, you should
-[Score-P]        switch off runtime wrapping by first running
-[Score-P]        'make uninstall clean', and then reinitializing the
-[Score-P]        working directory by adding
-[Score-P]        '--update --static-only-target-library' to your
-[Score-P]        'scorep-libwrap-init'-command line.
-make: *** [install-libwrap-runtime] Error 1
-
-# The message tells us to rather explicitely specify --static-only-target-library.
-# So we do that, now.
-
-###############################################################################
-
-$ make uninstall clean
-$ make show-summary
-  GEN       fftw3.summary
-Configure command:
-  scorep-libwrap-init           --name fftw3 \
-                                --display-name 'fftw3' \
-                                --prefix '/sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3' \
-                                -x c \
-                                --backend vanilla \
-                                --cppflags '' \
-                                --ldflags '' \
-                                --libs ''
-
-Loaded modules:
-  module load                   modules/3.2.10.5 \
-                                nodestat/2.2-1.0502.60539.1.31.gem \
-                                sdb/1.1-1.0502.63652.4.27.gem \
-                                alps/5.2.4-2.0502.9950.37.1.gem \
-                                lustre-cray_gem_s/2.8.0_3.0.101_0.46.1_1.0502.8871-1.0502.0.6.1 \
-                                udreg/2.3.2-1.0502.10518.2.17.gem \
-                                ugni/6.0-1.0502.10863.8.28.gem \
-                                gni-headers/4.0-1.0502.10859.7.8.gem \
-                                dmapp/7.0.1-1.0502.11080.8.74.gem \
-                                xpmem/0.1-2.0502.64982.5.3.gem \
-                                hss-llm/7.2.0 \
-                                Base-opts/1.0.2-1.0502.60680.2.4.gem \
-                                cray-mpich/7.5.2 \
-                                gcc/4.9.3 \
-                                craype-network-gemini \
-                                craype-interlagos \
-                                craype/2.5.9 \
-                                lustredu/1.4 \
-                                xalt/0.7.5 \
-                                module_msg/0.1 \
-                                modulator/1.2.0 \
-                                hsi/5.0.2.p1 \
-                                DefApps \
-                                vim/7.4 \
-                                git/2.3.2 \
-                                tmux/2.2 \
-                                cray-libsci/16.11.1 \
-                                pmi/5.0.11 \
-                                atp/2.0.5 \
-                                PrgEnv-gnu/5.2.82 \
-                                papi/5.5.0.2 \
-                                pdtoolkit/3.21 \
-                                rca/1.0.0-2.0502.60530.1.63.gem \
-                                scorep/.4.0-dev-libwrap \
-                                fftw/3.3.4.11
-
-###############################################################################
-
-# Take the commands from the above `make show-summary` and modify them
-
-$ scorep-libwrap-init --name fftw3 -x c --update --static-only-target-library                                   
-Warning: ./fftw3.filter has not been overwritten.
-         If your -I include flags have changed, you might want to update the
-         include rules for files with the new/removed directories.
-         Detected include directories: .
-         
-Created working directory '.' for library wrapper fftw3.
-
-Next:
-
-Add the #include-statements for your library to libwrap.h.
-
-Add one or more function calls to your library into main.c.
-It will be used as a linking-test.
-
-    $ make                 # build wrapper
-    $ make check           # execute tests
-    $ make install         # install wrapper
-    $ make installcheck    # execute more tests
-
-To use the wrapper, link your application like this before executing it:
-
-    $ scorep --libwrap=fftw3 cc  app.c   -o app
-
-For detailed instructions consult 'README.md'.
-
-###############################################################################
-
-$ make
-  CCLD      main
-  CPP       libwrap.i
-  GEN       scorep_libwrap_fftw3.c
-  QUICK-CHECK
-  CC        libscorep_libwrap_fftw3_linktime.lo
-  CCLD      libscorep_libwrap_fftw3_linktime.la
-
-###############################################################################
-
-$ make install
-  QUICK-CHECK
-  GEN       fftw3.libwrap
-  GEN       fftw3.summary
-  INSTALL   libscorep_libwrap_fftw3_linktime.la
   INSTALL   fftw3.libwrap
   INSTALL   fftw3.summary
   INSTALL   fftw3.wrap
@@ -525,9 +398,13 @@ $ make installcheck
 /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/lib/backend/libscorep_measurement.a(libscorep_measurement_libwrap_la-SCOREP_Libwrap.o): In function `SCOREP_Libwrap_Create':
 /ccs/home/brendel/sources/scorep/svn-libwrap/build-backend/../src/measurement/SCOREP_Libwrap.c:211: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
 /usr/bin/sha1sum: a.out: No such file or directory
+  SCOREP    main_runtime_wrapped
+/sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/lib/backend/libscorep_measurement.a(libscorep_measurement_libwrap_la-SCOREP_Libwrap.o): In function `SCOREP_Libwrap_Create':
+/ccs/home/brendel/sources/scorep/svn-libwrap/build-backend/../src/measurement/SCOREP_Libwrap.c:211: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
 [Score-P] To further check, please execute the generated binaries:
 [Score-P]
 [Score-P]     $ ./main_linktime_wrapped
+[Score-P]     $ ./main_runtime_wrapped
 [Score-P]
 [Score-P] If available, verify the output via:
 [Score-P]
@@ -539,15 +416,23 @@ $ make installcheck
 ###############################################################################
 
 $ qsub ./job-titan.pbs 
-3569327
+3571370
 
 ###############################################################################
 
-$ watch qstat -u brendel # until the job is complete
+$ watch qstat -u $USER # until the job is complete
 
 ###############################################################################
 
-$ cube_info -m visits:excl scorep-fftw3-test-3569327/profile.cubex
+# only the static test worked on Titan, because default linking is always static
+
+$ cat 3571370-fftw3-test.err
+[Score-P] src/measurement/SCOREP_Libwrap.c:285: Fatal: Could not resolve symbol 'fftw_plan_with_nthreads' for library wrapper 'fftw3': /opt/cray/fftw/3.3.4.11/interlagos/lib/libfftw3f.so: undefined symbol: fftw_plan_with_nthreads
+[Score-P] Please report this to support@score-p.org. Thank you.
+[Score-P] Try also to preserve any generated core dumps.
+_pmiu_daemon(SIGCHLD): [NID 03794] [c8-1c0s6n2] [Fri Aug 18 16:58:29 2017] PE RANK 0 exit signal Aborted
+
+$ cube_info -m visits:excl scorep-fftw3-test-linktime-3571370/profile.cubex
 |      Visits (E) | Diff-Calltree
 |               1 |  * main
 |               2 |  |  * fftwf_malloc(size_t)
@@ -562,10 +447,12 @@ $ cube_info -m visits:excl scorep-fftw3-test-3569327/profile.cubex
 ###############################################################################
 
 $ ls
-3569327-fftw3-test.err  fftw3.nvcc.wrap  libscorep_libwrap_fftw3_linktime.la  libwrap.h              main.c                 README.md                   uncertain.filter
-3569327-fftw3-test.out  fftw3.summary    libscorep_libwrap_fftw3_linktime.lo  libwrap.i              main_linktime_wrapped  scorep-fftw3-test-3569327
-fftw3.filter            fftw3.wrap       libscorep_libwrap_fftw3_linktime.o   load-modules-titan.sh  Makefile               scorep_libwrap_fftw3.c
-fftw3.libwrap           job-titan.pbs    libwrap.c                            main                   missing.filter         scorep_libwrap_fftw3.inc.c
+3571370-fftw3-test.err  fftw3.wrap                           libscorep_libwrap_fftw3_runtime.lo  main                   scorep-fftw3-test-linktime-3571370
+3571370-fftw3-test.out  job-titan.pbs                        libscorep_libwrap_fftw3_runtime.o   main.c                 scorep_libwrap_fftw3.c
+fftw3.filter            libscorep_libwrap_fftw3_linktime.la  libwrap.c                           main_linktime_wrapped  scorep_libwrap_fftw3.inc.c
+fftw3.libwrap           libscorep_libwrap_fftw3_linktime.lo  libwrap.h                           main_runtime_wrapped
+fftw3.nvcc.wrap         libscorep_libwrap_fftw3_linktime.o   libwrap.i                           Makefile
+fftw3.summary           libscorep_libwrap_fftw3_runtime.la   load-modules-titan.sh               README.md
 
 $ ls $SCOREP_DIR/share/scorep/ | grep fftw3
 fftw3.filter
@@ -577,3 +464,7 @@ fftw3.wrap
 $ ls $SCOREP_DIR/lib/backend | grep fftw3
 libscorep_libwrap_fftw3_linktime.a
 libscorep_libwrap_fftw3_linktime.la
+libscorep_libwrap_fftw3_linktime.so
+libscorep_libwrap_fftw3_runtime.a
+libscorep_libwrap_fftw3_runtime.la
+libscorep_libwrap_fftw3_runtime.so
