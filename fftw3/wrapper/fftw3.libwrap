@@ -2,10 +2,10 @@ LIBWRAP_NAME=fftw3
 LIBWRAP_CC=cc -std=gnu99
 LIBWRAP_BACKEND=
 LIBWRAP_LANGUAGE=c
-LIBWRAP_CPPFLAGS=
-LIBWRAP_LDFLAGS=
-LIBWRAP_LIBS=
-LIBWRAP_DLOPEN_LIBS=
+LIBWRAP_CPPFLAGS=-I/opt/cray/fftw/3.3.4.11/x86_64/include
+LIBWRAP_LDFLAGS=-L/opt/cray/fftw/3.3.4.11/x86_64/lib
+LIBWRAP_LIBS=-lfftw3 -lfftw3f
+LIBWRAP_DLOPEN_LIBS=libfftw3.so libfftw3f.so
 LIBWRAP_VARIADIC_IS_VOID_SYMBOLS=
 LIBWRAP_ELLIPSIS_MAPPING_SYMBOLS=
 LIBWRAP_LOADEDMODULES=eswrap/1.3.3-1.020200.1278.0:craype-network-gemini:gcc/4.9.3:craype/2.5.9:cray-mpich/7.5.2:craype-interlagos:lustredu/1.4:xalt/0.7.5:module_msg/0.1:modulator/1.2.0:hsi/5.0.2.p1:DefApps:vim/7.4:git/2.3.2:tmux/2.2:cray-libsci/16.11.1:udreg/2.3.2-1.0502.10518.2.17.gem:ugni/6.0-1.0502.10863.8.28.gem:pmi/5.0.11:dmapp/7.0.1-1.0502.11080.8.74.gem:gni-headers/4.0-1.0502.10859.7.8.gem:xpmem/0.1-2.0502.64982.5.3.gem:dvs/2.5_0.9.0-1.0502.2188.1.113.gem:alps/5.2.4-2.0502.9774.31.12.gem:rca/1.0.0-2.0502.60530.1.63.gem:atp/2.0.5:PrgEnv-gnu/5.2.82:fftw/3.3.4.11:papi/5.5.0.2:pdtoolkit/3.21:scorep/.4.0-dev-libwrap

@@ -3,13 +3,13 @@ LW_DISPLAY_NAME         = 'fftw3'
 LW_PREFIX               = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3
 LW_BACKEND              = 
 LW_BACKEND_SUFFIX       = /backend
-CPPFLAGS                = 
-LDFLAGS                 = 
-LIBS                    = 
+CPPFLAGS                = -I/opt/cray/fftw/3.3.4.11/x86_64/include
+LDFLAGS                 = -L/opt/cray/fftw/3.3.4.11/x86_64/lib
+LIBS                    = -lfftw3 -lfftw3f
 SCOREP_CC               = cc -std=gnu99
 SCOREP_CC_WITHOUT_FLAGS = cc
 LIBTOOL                 = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/libexec/scorep/backend/libtool
-LIBTOOL_LDFLAGS         = -static
+LIBTOOL_LDFLAGS         = 
 INSTALL                 = /usr/bin/install -c
 
 LW_GEN                  = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/libexec/scorep/scorep-library-wrapper-generator
@@ -17,21 +17,21 @@ LW_SCOREP               = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.
 LW_LANGUAGE             = c
 LW_SRCEXT               = c
 LW_LIBTOOL_TAG          = CC
-LW_LIBLIST              = 
+LW_LIBLIST              =  libfftw3.so libfftw3f.so
 
 SCOREP_CPPFLAGS         = -I/sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/include -I/sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/include/scorep 
 
-LW_INIT_FLAGS           = --static-only-target-library
+LW_INIT_FLAGS           = 
 
 # proxy targets to enable/disable making/installing/uninstalling linktime and runtime wrappers according to what score-p supports
 ALL_LIBWRAP_LINKTIME          = all-libwrap-linktime
 INSTALL_LIBWRAP_LINKTIME      = install-libwrap-linktime
 INSTALLCHECK_LIBWRAP_LINKTIME = main_linktime_wrapped
 UNINSTALL_LIBWRAP_LINKTIME    = uninstall-libwrap-linktime
-ALL_LIBWRAP_RUNTIME          =
-INSTALL_LIBWRAP_RUNTIME      =
-INSTALLCHECK_LIBWRAP_RUNTIME =
-UNINSTALL_LIBWRAP_RUNTIME    =
+ALL_LIBWRAP_RUNTIME          = all-libwrap-runtime
+INSTALL_LIBWRAP_RUNTIME      = install-libwrap-runtime
+INSTALLCHECK_LIBWRAP_RUNTIME = main_runtime_wrapped
+UNINSTALL_LIBWRAP_RUNTIME    = uninstall-libwrap-runtime
 
 ### Variables to-be-set by scorep-libwrap-init ###
 # LW_NAME

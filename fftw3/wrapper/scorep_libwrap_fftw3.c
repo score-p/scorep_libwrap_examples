@@ -106,6 +106,8 @@ libwrap_fftw3_early_init()
 #endif
 
 static const char* libwrap_fftw3_libnames[] = {
+    "libfftw3.so",
+    "libfftw3f.so"
 };
 static SCOREP_LibwrapHandle*          libwrap_fftw3_handle;
 static const SCOREP_LibwrapAttributes libwrap_fftw3_attributes =
@@ -115,7 +117,7 @@ static const SCOREP_LibwrapAttributes libwrap_fftw3_attributes =
     "fftw3",
     SCOREP_LIBWRAP_MODE,
     libwrap_fftw3_init,
-    0,
+    2,
     libwrap_fftw3_libnames
 };
 

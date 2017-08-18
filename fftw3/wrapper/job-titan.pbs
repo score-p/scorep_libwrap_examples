@@ -11,15 +11,24 @@ set -e
 cd $PBS_O_WORKDIR
 dir=$PBS_O_WORKDIR
 
-sources="./main_linktime_wrapped"
+source $MODULESHOME/init/sh
+source ./load-modules-titan.sh
+
+sources="./main_linktime_wrapped ./main_runtime_wrapped"
 targetdir="$MEMBERWORK/stf010/fftw3-test/$PBS_JOBID"
 
 mkdir -p $targetdir
 
-cp ./main_linktime_wrapped $targetdir
+cp $sources $targetdir
 
 cd $targetdir
 
 aprun -n 1 ./main_linktime_wrapped
 
-cp -r scorep-* $PBS_O_WORKDIR/scorep-fftw3-test-$PBS_JOBID
+mv scorep-* $PBS_O_WORKDIR/scorep-fftw3-test-linktime-$PBS_JOBID
+
+export LD_LIBRARY_PATH=$FFTW_DIR:$LD_LIBRARY_PATH
+
+aprun -n 1 ./main_runtime_wrapped
+
+mv scorep-* $PBS_O_WORKDIR/scorep-fftw3-test-runtime-$PBS_JOBID
