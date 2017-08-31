@@ -21,7 +21,7 @@ It will be used as a linking-test.
 
 To use the wrapper, link your application like this before executing it:
 
-    $ scorep --libwrap=fftw3 cc -I/opt/cray/fftw/3.3.4.11/x86_64/include app.c -L/opt/cray/fftw/3.3.4.11/x86_64/lib -lfftw3 -lfftw3f -o app
+    $ scorep --libwrap=fftw3 cc -I/opt/cray/fftw/3.3.4.11/interlagos/include app.c -L/opt/cray/fftw/3.3.4.11/interlagos/lib -lfftw3 -lfftw3f -o app
 
 For detailed instructions consult 'README.md'.
 
@@ -68,144 +68,144 @@ make: *** [quick-check] Error 1
 ###############################################################################
 
 $ make check
-  UNCERTAIN fftw_execute
-  UNCERTAIN fftw_plan_dft
-  UNCERTAIN fftw_plan_dft_1d
-  UNCERTAIN fftw_plan_dft_2d
-  UNCERTAIN fftw_plan_dft_3d
-  UNCERTAIN fftw_plan_many_dft
-  UNCERTAIN fftw_plan_guru_dft
-  UNCERTAIN fftw_plan_guru_split_dft
-  UNCERTAIN fftw_plan_guru64_dft
-  UNCERTAIN fftw_plan_guru64_split_dft
-  UNCERTAIN fftw_execute_dft
-  UNCERTAIN fftw_execute_split_dft
-  UNCERTAIN fftw_plan_many_dft_r2c
-  UNCERTAIN fftw_plan_dft_r2c
-  UNCERTAIN fftw_plan_dft_r2c_1d
-  UNCERTAIN fftw_plan_dft_r2c_2d
-  UNCERTAIN fftw_plan_dft_r2c_3d
-  UNCERTAIN fftw_plan_many_dft_c2r
-  UNCERTAIN fftw_plan_dft_c2r
-  UNCERTAIN fftw_plan_dft_c2r_1d
-  UNCERTAIN fftw_plan_dft_c2r_2d
-  UNCERTAIN fftw_plan_dft_c2r_3d
-  UNCERTAIN fftw_plan_guru_dft_r2c
-  UNCERTAIN fftw_plan_guru_dft_c2r
-  UNCERTAIN fftw_plan_guru_split_dft_r2c
-  UNCERTAIN fftw_plan_guru_split_dft_c2r
-  UNCERTAIN fftw_plan_guru64_dft_r2c
-  UNCERTAIN fftw_plan_guru64_dft_c2r
-  UNCERTAIN fftw_plan_guru64_split_dft_r2c
-  UNCERTAIN fftw_plan_guru64_split_dft_c2r
-  UNCERTAIN fftw_execute_dft_r2c
-  UNCERTAIN fftw_execute_dft_c2r
-  UNCERTAIN fftw_execute_split_dft_r2c
-  UNCERTAIN fftw_execute_split_dft_c2r
-  UNCERTAIN fftw_plan_many_r2r
-  UNCERTAIN fftw_plan_r2r
-  UNCERTAIN fftw_plan_r2r_1d
-  UNCERTAIN fftw_plan_r2r_2d
-  UNCERTAIN fftw_plan_r2r_3d
-  UNCERTAIN fftw_plan_guru_r2r
-  UNCERTAIN fftw_plan_guru64_r2r
-  UNCERTAIN fftw_execute_r2r
-  UNCERTAIN fftw_destroy_plan
-  UNCERTAIN fftw_forget_wisdom
-  UNCERTAIN fftw_cleanup
-  UNCERTAIN fftw_set_timelimit
-  UNCERTAIN fftw_plan_with_nthreads
-  UNCERTAIN fftw_init_threads                                                                                                                                        
-  UNCERTAIN fftw_cleanup_threads
-  UNCERTAIN fftw_export_wisdom_to_filename
-  UNCERTAIN fftw_export_wisdom_to_file
-  UNCERTAIN fftw_export_wisdom_to_string
-  UNCERTAIN fftw_export_wisdom
-  UNCERTAIN fftw_import_system_wisdom
-  UNCERTAIN fftw_import_wisdom_from_filename
-  UNCERTAIN fftw_import_wisdom_from_file
-  UNCERTAIN fftw_import_wisdom_from_string
-  UNCERTAIN fftw_import_wisdom
-  UNCERTAIN fftw_fprint_plan
-  UNCERTAIN fftw_print_plan
-  UNCERTAIN fftw_sprint_plan
-  UNCERTAIN fftw_malloc
-  UNCERTAIN fftw_alloc_real
-  UNCERTAIN fftw_alloc_complex
-  UNCERTAIN fftw_free
-  UNCERTAIN fftw_flops
-  UNCERTAIN fftw_estimate_cost
-  UNCERTAIN fftw_cost
-  UNCERTAIN fftw_alignment_of
-  UNCERTAIN fftwf_execute
-  UNCERTAIN fftwf_plan_dft
-  UNCERTAIN fftwf_plan_dft_1d
-  UNCERTAIN fftwf_plan_dft_2d
-  UNCERTAIN fftwf_plan_dft_3d
-  UNCERTAIN fftwf_plan_many_dft
-  UNCERTAIN fftwf_plan_guru_dft
-  UNCERTAIN fftwf_plan_guru_split_dft
-  UNCERTAIN fftwf_plan_guru64_dft
-  UNCERTAIN fftwf_plan_guru64_split_dft
-  UNCERTAIN fftwf_execute_dft
-  UNCERTAIN fftwf_execute_split_dft
-  UNCERTAIN fftwf_plan_many_dft_r2c
-  UNCERTAIN fftwf_plan_dft_r2c
-  UNCERTAIN fftwf_plan_dft_r2c_1d
-  UNCERTAIN fftwf_plan_dft_r2c_2d
-  UNCERTAIN fftwf_plan_dft_r2c_3d
-  UNCERTAIN fftwf_plan_many_dft_c2r
-  UNCERTAIN fftwf_plan_dft_c2r
-  UNCERTAIN fftwf_plan_dft_c2r_1d
-  UNCERTAIN fftwf_plan_dft_c2r_2d
-  UNCERTAIN fftwf_plan_dft_c2r_3d
-  UNCERTAIN fftwf_plan_guru_dft_r2c
-  UNCERTAIN fftwf_plan_guru_dft_c2r
-  UNCERTAIN fftwf_plan_guru_split_dft_r2c
-  UNCERTAIN fftwf_plan_guru_split_dft_c2r
-  UNCERTAIN fftwf_plan_guru64_dft_r2c
-  UNCERTAIN fftwf_plan_guru64_dft_c2r
-  UNCERTAIN fftwf_plan_guru64_split_dft_r2c
-  UNCERTAIN fftwf_plan_guru64_split_dft_c2r
-  UNCERTAIN fftwf_execute_dft_r2c
-  UNCERTAIN fftwf_execute_dft_c2r
-  UNCERTAIN fftwf_execute_split_dft_r2c
-  UNCERTAIN fftwf_execute_split_dft_c2r
-  UNCERTAIN fftwf_plan_many_r2r
-  UNCERTAIN fftwf_plan_r2r
-  UNCERTAIN fftwf_plan_r2r_1d
-  UNCERTAIN fftwf_plan_r2r_2d
-  UNCERTAIN fftwf_plan_r2r_3d
-  UNCERTAIN fftwf_plan_guru_r2r
-  UNCERTAIN fftwf_plan_guru64_r2r
-  UNCERTAIN fftwf_execute_r2r
-  UNCERTAIN fftwf_destroy_plan
-  UNCERTAIN fftwf_forget_wisdom
-  UNCERTAIN fftwf_cleanup
-  UNCERTAIN fftwf_set_timelimit
-  UNCERTAIN fftwf_plan_with_nthreads
-  UNCERTAIN fftwf_init_threads
-  UNCERTAIN fftwf_cleanup_threads
-  UNCERTAIN fftwf_export_wisdom_to_filename
-  UNCERTAIN fftwf_export_wisdom_to_file
-  UNCERTAIN fftwf_export_wisdom_to_string
-  UNCERTAIN fftwf_export_wisdom
-  UNCERTAIN fftwf_import_system_wisdom
-  UNCERTAIN fftwf_import_wisdom_from_filename
-  UNCERTAIN fftwf_import_wisdom_from_file
-  UNCERTAIN fftwf_import_wisdom_from_string
-  UNCERTAIN fftwf_import_wisdom
-  UNCERTAIN fftwf_fprint_plan
-  UNCERTAIN fftwf_print_plan
-  UNCERTAIN fftwf_sprint_plan
-  UNCERTAIN fftwf_malloc
-  UNCERTAIN fftwf_alloc_real
-  UNCERTAIN fftwf_alloc_complex
-  UNCERTAIN fftwf_free
-  UNCERTAIN fftwf_flops
-  UNCERTAIN fftwf_estimate_cost
-  UNCERTAIN fftwf_cost
-  UNCERTAIN fftwf_alignment_of
+  FOUND     fftw_execute
+  FOUND     fftw_plan_dft
+  FOUND     fftw_plan_dft_1d
+  FOUND     fftw_plan_dft_2d
+  FOUND     fftw_plan_dft_3d
+  FOUND     fftw_plan_many_dft
+  FOUND     fftw_plan_guru_dft
+  FOUND     fftw_plan_guru_split_dft
+  FOUND     fftw_plan_guru64_dft
+  FOUND     fftw_plan_guru64_split_dft
+  FOUND     fftw_execute_dft
+  FOUND     fftw_execute_split_dft
+  FOUND     fftw_plan_many_dft_r2c
+  FOUND     fftw_plan_dft_r2c
+  FOUND     fftw_plan_dft_r2c_1d
+  FOUND     fftw_plan_dft_r2c_2d
+  FOUND     fftw_plan_dft_r2c_3d
+  FOUND     fftw_plan_many_dft_c2r
+  FOUND     fftw_plan_dft_c2r
+  FOUND     fftw_plan_dft_c2r_1d
+  FOUND     fftw_plan_dft_c2r_2d
+  FOUND     fftw_plan_dft_c2r_3d
+  FOUND     fftw_plan_guru_dft_r2c
+  FOUND     fftw_plan_guru_dft_c2r
+  FOUND     fftw_plan_guru_split_dft_r2c
+  FOUND     fftw_plan_guru_split_dft_c2r
+  FOUND     fftw_plan_guru64_dft_r2c
+  FOUND     fftw_plan_guru64_dft_c2r
+  FOUND     fftw_plan_guru64_split_dft_r2c
+  FOUND     fftw_plan_guru64_split_dft_c2r
+  FOUND     fftw_execute_dft_r2c
+  FOUND     fftw_execute_dft_c2r
+  FOUND     fftw_execute_split_dft_r2c
+  FOUND     fftw_execute_split_dft_c2r
+  FOUND     fftw_plan_many_r2r
+  FOUND     fftw_plan_r2r
+  FOUND     fftw_plan_r2r_1d
+  FOUND     fftw_plan_r2r_2d
+  FOUND     fftw_plan_r2r_3d
+  FOUND     fftw_plan_guru_r2r
+  FOUND     fftw_plan_guru64_r2r
+  FOUND     fftw_execute_r2r
+  FOUND     fftw_destroy_plan
+  FOUND     fftw_forget_wisdom
+  FOUND     fftw_cleanup
+  FOUND     fftw_set_timelimit
+  MISSING   fftw_plan_with_nthreads
+  MISSING   fftw_init_threads
+  MISSING   fftw_cleanup_threads
+  FOUND     fftw_export_wisdom_to_filename
+  FOUND     fftw_export_wisdom_to_file
+  FOUND     fftw_export_wisdom_to_string
+  FOUND     fftw_export_wisdom
+  FOUND     fftw_import_system_wisdom
+  FOUND     fftw_import_wisdom_from_filename
+  FOUND     fftw_import_wisdom_from_file
+  FOUND     fftw_import_wisdom_from_string
+  FOUND     fftw_import_wisdom
+  FOUND     fftw_fprint_plan
+  FOUND     fftw_print_plan
+  FOUND     fftw_sprint_plan
+  FOUND     fftw_malloc
+  FOUND     fftw_alloc_real
+  FOUND     fftw_alloc_complex
+  FOUND     fftw_free
+  FOUND     fftw_flops
+  FOUND     fftw_estimate_cost
+  FOUND     fftw_cost
+  FOUND     fftw_alignment_of
+  FOUND     fftwf_execute
+  FOUND     fftwf_plan_dft
+  FOUND     fftwf_plan_dft_1d
+  FOUND     fftwf_plan_dft_2d
+  FOUND     fftwf_plan_dft_3d
+  FOUND     fftwf_plan_many_dft
+  FOUND     fftwf_plan_guru_dft
+  FOUND     fftwf_plan_guru_split_dft
+  FOUND     fftwf_plan_guru64_dft
+  FOUND     fftwf_plan_guru64_split_dft
+  FOUND     fftwf_execute_dft
+  FOUND     fftwf_execute_split_dft
+  FOUND     fftwf_plan_many_dft_r2c
+  FOUND     fftwf_plan_dft_r2c
+  FOUND     fftwf_plan_dft_r2c_1d
+  FOUND     fftwf_plan_dft_r2c_2d
+  FOUND     fftwf_plan_dft_r2c_3d
+  FOUND     fftwf_plan_many_dft_c2r
+  FOUND     fftwf_plan_dft_c2r
+  FOUND     fftwf_plan_dft_c2r_1d
+  FOUND     fftwf_plan_dft_c2r_2d
+  FOUND     fftwf_plan_dft_c2r_3d
+  FOUND     fftwf_plan_guru_dft_r2c
+  FOUND     fftwf_plan_guru_dft_c2r
+  FOUND     fftwf_plan_guru_split_dft_r2c
+  FOUND     fftwf_plan_guru_split_dft_c2r
+  FOUND     fftwf_plan_guru64_dft_r2c
+  FOUND     fftwf_plan_guru64_dft_c2r
+  FOUND     fftwf_plan_guru64_split_dft_r2c
+  FOUND     fftwf_plan_guru64_split_dft_c2r
+  FOUND     fftwf_execute_dft_r2c
+  FOUND     fftwf_execute_dft_c2r
+  FOUND     fftwf_execute_split_dft_r2c
+  FOUND     fftwf_execute_split_dft_c2r
+  FOUND     fftwf_plan_many_r2r
+  FOUND     fftwf_plan_r2r
+  FOUND     fftwf_plan_r2r_1d
+  FOUND     fftwf_plan_r2r_2d
+  FOUND     fftwf_plan_r2r_3d
+  FOUND     fftwf_plan_guru_r2r
+  FOUND     fftwf_plan_guru64_r2r
+  FOUND     fftwf_execute_r2r
+  FOUND     fftwf_destroy_plan
+  FOUND     fftwf_forget_wisdom
+  FOUND     fftwf_cleanup
+  FOUND     fftwf_set_timelimit
+  MISSING   fftwf_plan_with_nthreads
+  MISSING   fftwf_init_threads
+  MISSING   fftwf_cleanup_threads
+  FOUND     fftwf_export_wisdom_to_filename
+  FOUND     fftwf_export_wisdom_to_file
+  FOUND     fftwf_export_wisdom_to_string
+  FOUND     fftwf_export_wisdom
+  FOUND     fftwf_import_system_wisdom
+  FOUND     fftwf_import_wisdom_from_filename
+  FOUND     fftwf_import_wisdom_from_file
+  FOUND     fftwf_import_wisdom_from_string
+  FOUND     fftwf_import_wisdom
+  FOUND     fftwf_fprint_plan
+  FOUND     fftwf_print_plan
+  FOUND     fftwf_sprint_plan
+  FOUND     fftwf_malloc
+  FOUND     fftwf_alloc_real
+  FOUND     fftwf_alloc_complex
+  FOUND     fftwf_free
+  FOUND     fftwf_flops
+  FOUND     fftwf_estimate_cost
+  FOUND     fftwf_cost
+  FOUND     fftwf_alignment_of
   MISSING   fftwl_execute
   MISSING   fftwl_plan_dft
   MISSING   fftwl_plan_dft_1d
@@ -256,7 +256,7 @@ $ make check
   MISSING   fftwl_init_threads
   MISSING   fftwl_cleanup_threads
   MISSING   fftwl_export_wisdom_to_filename
-  MISSING   fftwl_export_wisdom_to_file                                                                                                                               
+  MISSING   fftwl_export_wisdom_to_file
   MISSING   fftwl_export_wisdom_to_string
   MISSING   fftwl_export_wisdom
   MISSING   fftwl_import_system_wisdom
@@ -304,7 +304,7 @@ $ make check
   MISSING   fftwq_plan_guru64_dft_r2c
   MISSING   fftwq_plan_guru64_dft_c2r
   MISSING   fftwq_plan_guru64_split_dft_r2c
-  MISSING   fftwq_plan_guru64_split_dft_c2r                                                                                                                            
+  MISSING   fftwq_plan_guru64_split_dft_c2r
   MISSING   fftwq_execute_dft_r2c
   MISSING   fftwq_execute_dft_c2r
   MISSING   fftwq_execute_split_dft_r2c
@@ -344,13 +344,6 @@ $ make check
   MISSING   fftwq_estimate_cost
   MISSING   fftwq_cost
   MISSING   fftwq_alignment_of
-[Score-P] Warning: Symbols that are present without linking against the target
-[Score-P]          library and its dependencies have been wrapped. It is uncertain
-[Score-P]          whether calls to them can be intercepted, or perhaps you did
-[Score-P]          not intend to wrap them. The filter file 'uncertain.filter'
-[Score-P]          containing these symbols has been created. Maybe you want to
-[Score-P]          add all or some of these symbols to fftw3.filter.
-[Score-P]          Then repeat 'make' and 'make check'.
 [Score-P] Error: Symbols that are not present in the target library have been
 [Score-P]        wrapped. The filter file 'missing.filter' containing these
 [Score-P]        symbols has been created. Reconsider your wrapper settings, or
@@ -363,9 +356,6 @@ make: *** [check] Error 1
 $ vim -p fftw3.filter missing.filter
 
 # Put all excludes from missing.filter into fftw3.filter under SCOREP_REGION_NAMES_BEGIN.
-# Ignore uncertain.filter, because everything in there is because Cray links fftw3 automatically.
-# So the wrapper generator cannot tell whether it is a function from an intentionally
-# linked target library or from an automatically linked system library
 
 ###############################################################################
 
@@ -415,8 +405,8 @@ $ make installcheck
 
 ###############################################################################
 
-$ qsub ./job-titan.pbs 
-3571370
+$ qsub ./job-titan.pbs
+3596607
 
 ###############################################################################
 
@@ -424,15 +414,7 @@ $ watch qstat -u $USER # until the job is complete
 
 ###############################################################################
 
-# only the static test worked on Titan, because default linking is always static
-
-$ cat 3571370-fftw3-test.err
-[Score-P] src/measurement/SCOREP_Libwrap.c:285: Fatal: Could not resolve symbol 'fftw_plan_with_nthreads' for library wrapper 'fftw3': /opt/cray/fftw/3.3.4.11/interlagos/lib/libfftw3f.so: undefined symbol: fftw_plan_with_nthreads
-[Score-P] Please report this to support@score-p.org. Thank you.
-[Score-P] Try also to preserve any generated core dumps.
-_pmiu_daemon(SIGCHLD): [NID 03794] [c8-1c0s6n2] [Fri Aug 18 16:58:29 2017] PE RANK 0 exit signal Aborted
-
-$ cube_info -m visits:excl scorep-fftw3-test-linktime-3571370/profile.cubex
+$ cube_info -m visits:excl scorep-fftw3-test-linktime-3596607/profile.cubex 
 |      Visits (E) | Diff-Calltree
 |               1 |  * main
 |               2 |  |  * fftwf_malloc(size_t)
@@ -444,15 +426,24 @@ $ cube_info -m visits:excl scorep-fftw3-test-linktime-3571370/profile.cubex
 |               1 |  |  * fftwf_destroy_plan(fftwf_plan)
 |               2 |  |  * fftwf_free(void *)
 
+$ cube_info -m visits:excl scorep-fftw3-test-runtime-3596607/profile.cubex 
+|      Visits (E) | Diff-Calltree
+|               1 |  * main
+|               2 |  |  * fftwf_malloc(size_t)
+|               1 |  |  * fftwf_plan_dft_1d(int, fftwf_complex *, fftwf_complex *, int, unsigned int)
+|               1 |  |  * fftwf_execute(const fftwf_plan)
+|               1 |  |  * fftwf_destroy_plan(fftwf_plan)
+|               2 |  |  * fftwf_free(void *)
+
 ###############################################################################
 
 $ ls
-3571370-fftw3-test.err  fftw3.wrap                           libscorep_libwrap_fftw3_runtime.lo  main                   scorep-fftw3-test-linktime-3571370
-3571370-fftw3-test.out  job-titan.pbs                        libscorep_libwrap_fftw3_runtime.o   main.c                 scorep_libwrap_fftw3.c
-fftw3.filter            libscorep_libwrap_fftw3_linktime.la  libwrap.c                           main_linktime_wrapped  scorep_libwrap_fftw3.inc.c
-fftw3.libwrap           libscorep_libwrap_fftw3_linktime.lo  libwrap.h                           main_runtime_wrapped
-fftw3.nvcc.wrap         libscorep_libwrap_fftw3_linktime.o   libwrap.i                           Makefile
-fftw3.summary           libscorep_libwrap_fftw3_runtime.la   load-modules-titan.sh               README.md
+3596607-fftw3-test.err  fftw3.wrap                           libscorep_libwrap_fftw3_runtime.lo  main                   README.md
+3596607-fftw3-test.out  job-titan.pbs                        libscorep_libwrap_fftw3_runtime.o   main.c                 scorep-fftw3-test-linktime-3596607
+fftw3.filter            libscorep_libwrap_fftw3_linktime.la  libwrap.c                           main_linktime_wrapped  scorep-fftw3-test-runtime-3596607
+fftw3.libwrap           libscorep_libwrap_fftw3_linktime.lo  libwrap.h                           main_runtime_wrapped   scorep_libwrap_fftw3.c
+fftw3.nvcc.wrap         libscorep_libwrap_fftw3_linktime.o   libwrap.i                           Makefile               scorep_libwrap_fftw3.inc.c
+fftw3.summary           libscorep_libwrap_fftw3_runtime.la   load-modules-titan.sh               missing.filter
 
 $ ls $SCOREP_DIR/share/scorep/ | grep fftw3
 fftw3.filter
