@@ -3,8 +3,8 @@ LW_DISPLAY_NAME         = 'fftw3'
 LW_PREFIX               = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3
 LW_BACKEND              = 
 LW_BACKEND_SUFFIX       = /backend
-CPPFLAGS                = -I/opt/cray/fftw/3.3.4.11/x86_64/include
-LDFLAGS                 = -L/opt/cray/fftw/3.3.4.11/x86_64/lib
+CPPFLAGS                = -I/opt/cray/fftw/3.3.4.11/interlagos/include
+LDFLAGS                 = -L/opt/cray/fftw/3.3.4.11/interlagos/lib
 LIBS                    = -lfftw3 -lfftw3f
 SCOREP_CC               = cc -std=gnu99
 SCOREP_CC_WITHOUT_FLAGS = cc

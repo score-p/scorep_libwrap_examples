@@ -1,4 +1,10 @@
 SCOREP_REGION_NAMES_BEGIN
+     EXCLUDE MANGLED fftw_plan_with_nthreads
+     EXCLUDE MANGLED fftw_init_threads
+     EXCLUDE MANGLED fftw_cleanup_threads
+     EXCLUDE MANGLED fftwf_plan_with_nthreads
+     EXCLUDE MANGLED fftwf_init_threads
+     EXCLUDE MANGLED fftwf_cleanup_threads
      EXCLUDE MANGLED fftwl_execute
      EXCLUDE MANGLED fftwl_plan_dft
      EXCLUDE MANGLED fftwl_plan_dft_1d

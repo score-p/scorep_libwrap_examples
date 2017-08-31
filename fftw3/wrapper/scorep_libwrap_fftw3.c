@@ -926,56 +926,6 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_set_timelimit )( double t )
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
 }
 
-#undef fftw_plan_with_nthreads
-void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_with_nthreads )( int nthreads )
-{
-    LIBWRAP_EARLY_INIT( fftw_plan_with_nthreads );
-    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
-    SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
-                         libwrap_fftw3_attributes );
-    SCOREP_LIBWRAP_FUNC_ENTER( fftw_plan_with_nthreads );
-    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_CALL( fftw_plan_with_nthreads, ( nthreads ) );
-    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_EXIT( fftw_plan_with_nthreads );
-    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
-}
-
-#undef fftw_init_threads
-int
-SCOREP_LIBWRAP_FUNC_NAME( fftw_init_threads )( void )
-{
-    int scorep_libwrap_var_ret;
-    LIBWRAP_EARLY_INIT( fftw_init_threads );
-    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
-    SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
-                         libwrap_fftw3_attributes );
-    SCOREP_LIBWRAP_FUNC_ENTER( fftw_init_threads );
-    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
-    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( fftw_init_threads, (  ) );
-    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_EXIT( fftw_init_threads );
-    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
-    return scorep_libwrap_var_ret;
-}
-
-#undef fftw_cleanup_threads
-void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_cleanup_threads )( void )
-{
-    LIBWRAP_EARLY_INIT( fftw_cleanup_threads );
-    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
-    SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
-                         libwrap_fftw3_attributes );
-    SCOREP_LIBWRAP_FUNC_ENTER( fftw_cleanup_threads );
-    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_CALL( fftw_cleanup_threads, (  ) );
-    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_EXIT( fftw_cleanup_threads );
-    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
-}
-
 #undef fftw_export_wisdom_to_filename
 int
 SCOREP_LIBWRAP_FUNC_NAME( fftw_export_wisdom_to_filename )( const char * filename )
@@ -2125,56 +2075,6 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_set_timelimit )( double t )
     SCOREP_LIBWRAP_FUNC_CALL( fftwf_set_timelimit, ( t ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( fftwf_set_timelimit );
-    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
-}
-
-#undef fftwf_plan_with_nthreads
-void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_with_nthreads )( int nthreads )
-{
-    LIBWRAP_EARLY_INIT( fftwf_plan_with_nthreads );
-    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
-    SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
-                         libwrap_fftw3_attributes );
-    SCOREP_LIBWRAP_FUNC_ENTER( fftwf_plan_with_nthreads );
-    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_CALL( fftwf_plan_with_nthreads, ( nthreads ) );
-    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_EXIT( fftwf_plan_with_nthreads );
-    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
-}
-
-#undef fftwf_init_threads
-int
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_init_threads )( void )
-{
-    int scorep_libwrap_var_ret;
-    LIBWRAP_EARLY_INIT( fftwf_init_threads );
-    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
-    SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
-                         libwrap_fftw3_attributes );
-    SCOREP_LIBWRAP_FUNC_ENTER( fftwf_init_threads );
-    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
-    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( fftwf_init_threads, (  ) );
-    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_EXIT( fftwf_init_threads );
-    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
-    return scorep_libwrap_var_ret;
-}
-
-#undef fftwf_cleanup_threads
-void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_cleanup_threads )( void )
-{
-    LIBWRAP_EARLY_INIT( fftwf_cleanup_threads );
-    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
-    SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
-                         libwrap_fftw3_attributes );
-    SCOREP_LIBWRAP_FUNC_ENTER( fftwf_cleanup_threads );
-    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_CALL( fftwf_cleanup_threads, (  ) );
-    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
-    SCOREP_LIBWRAP_FUNC_EXIT( fftwf_cleanup_threads );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
 }
 

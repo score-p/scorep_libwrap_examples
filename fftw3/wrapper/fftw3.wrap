@@ -45,9 +45,6 @@
 -wrap fftw_forget_wisdom
 -wrap fftw_cleanup
 -wrap fftw_set_timelimit
--wrap fftw_plan_with_nthreads
--wrap fftw_init_threads
--wrap fftw_cleanup_threads
 -wrap fftw_export_wisdom_to_filename
 -wrap fftw_export_wisdom_to_file
 -wrap fftw_export_wisdom_to_string
@@ -114,9 +111,6 @@
 -wrap fftwf_forget_wisdom
 -wrap fftwf_cleanup
 -wrap fftwf_set_timelimit
--wrap fftwf_plan_with_nthreads
--wrap fftwf_init_threads
--wrap fftwf_cleanup_threads
 -wrap fftwf_export_wisdom_to_filename
 -wrap fftwf_export_wisdom_to_file
 -wrap fftwf_export_wisdom_to_string

@@ -1,4 +1,0 @@
-[Score-P] src/measurement/SCOREP_Libwrap.c:285: Fatal: Could not resolve symbol 'fftw_plan_with_nthreads' for library wrapper 'fftw3': /opt/cray/fftw/3.3.4.11/interlagos/lib/libfftw3f.so: undefined symbol: fftw_plan_with_nthreads
-[Score-P] Please report this to support@score-p.org. Thank you.
-[Score-P] Try also to preserve any generated core dumps.
-_pmiu_daemon(SIGCHLD): [NID 03794] [c8-1c0s6n2] [Fri Aug 18 16:58:29 2017] PE RANK 0 exit signal Aborted

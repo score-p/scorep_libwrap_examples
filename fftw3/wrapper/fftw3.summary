@@ -4,8 +4,8 @@ Configure command:
                                 --prefix '/sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3' \
                                 -x c \
                                 --backend vanilla \
-                                --cppflags '-I/opt/cray/fftw/3.3.4.11/x86_64/include' \
-                                --ldflags '-L/opt/cray/fftw/3.3.4.11/x86_64/lib' \
+                                --cppflags '-I/opt/cray/fftw/3.3.4.11/interlagos/include' \
+                                --ldflags '-L/opt/cray/fftw/3.3.4.11/interlagos/lib' \
                                 --libs '-lfftw3 -lfftw3f'
 
 Loaded modules:
@@ -27,7 +27,7 @@ Loaded modules:
                                 cray-libsci/16.11.1 \
                                 udreg/2.3.2-1.0502.10518.2.17.gem \
                                 ugni/6.0-1.0502.10863.8.28.gem \
-                                pmi/5.0.11 \
+                                pmi/5.0.12 \
                                 dmapp/7.0.1-1.0502.11080.8.74.gem \
                                 gni-headers/4.0-1.0502.10859.7.8.gem \
                                 xpmem/0.1-2.0502.64982.5.3.gem \
