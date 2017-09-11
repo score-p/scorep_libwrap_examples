@@ -2,8 +2,9 @@
 
 Collection of configurations to create wrappers for certain libraries via Score-P's User Library Wrapping feature
 
-## Prerequisites- Score-P version 4.0 (not yet released), or branch "\*libwrap"
+## Prerequisites
 
+- Score-P version 4.0 (not yet released) or branch "\*libwrap"
 - libclang-dev 3.6+
 - clang/llvm 3.6+
 
