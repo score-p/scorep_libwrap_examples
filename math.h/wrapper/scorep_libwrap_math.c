@@ -373,6 +373,42 @@ SCOREP_LIBWRAP_FUNC_NAME( exp )( double __x )
     return scorep_libwrap_var_ret;
 }
 
+#undef frexp
+double
+SCOREP_LIBWRAP_FUNC_NAME( frexp )( double __x, int * __exponent )
+{
+    double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( frexp );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( frexp );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( frexp, ( __x, __exponent ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( frexp );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef ldexp
+double
+SCOREP_LIBWRAP_FUNC_NAME( ldexp )( double __x, int __exponent )
+{
+    double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( ldexp );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( ldexp );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( ldexp, ( __x, __exponent ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( ldexp );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef log
 double
 SCOREP_LIBWRAP_FUNC_NAME( log )( double __x )
@@ -405,6 +441,24 @@ SCOREP_LIBWRAP_FUNC_NAME( log10 )( double __x )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( log10, ( __x ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( log10 );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef modf
+double
+SCOREP_LIBWRAP_FUNC_NAME( modf )( double __x, double * __iptr )
+{
+    double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( modf );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( modf );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( modf, ( __x, __iptr ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( modf );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }
@@ -643,6 +697,42 @@ SCOREP_LIBWRAP_FUNC_NAME( fmod )( double __x, double __y )
     return scorep_libwrap_var_ret;
 }
 
+#undef isinf
+int
+SCOREP_LIBWRAP_FUNC_NAME( isinf )( double __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( isinf );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( isinf );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( isinf, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( isinf );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef finite
+int
+SCOREP_LIBWRAP_FUNC_NAME( finite )( double __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( finite );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( finite );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( finite, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( finite );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef drem
 double
 SCOREP_LIBWRAP_FUNC_NAME( drem )( double __x, double __y )
@@ -679,6 +769,24 @@ SCOREP_LIBWRAP_FUNC_NAME( significand )( double __x )
     return scorep_libwrap_var_ret;
 }
 
+#undef copysign
+double
+SCOREP_LIBWRAP_FUNC_NAME( copysign )( double __x, double __y )
+{
+    double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( copysign );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( copysign );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( copysign, ( __x, __y ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( copysign );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef nan
 double
 SCOREP_LIBWRAP_FUNC_NAME( nan )( const char * __tagb )
@@ -693,6 +801,24 @@ SCOREP_LIBWRAP_FUNC_NAME( nan )( const char * __tagb )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( nan, ( __tagb ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( nan );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef isnan
+int
+SCOREP_LIBWRAP_FUNC_NAME( isnan )( double __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( isnan );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( isnan );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( isnan, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( isnan );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }
@@ -981,6 +1107,24 @@ SCOREP_LIBWRAP_FUNC_NAME( remainder )( double __x, double __y )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( remainder, ( __x, __y ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( remainder );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef scalbn
+double
+SCOREP_LIBWRAP_FUNC_NAME( scalbn )( double __x, int __n )
+{
+    double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( scalbn );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( scalbn );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( scalbn, ( __x, __n ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( scalbn );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }
@@ -1525,6 +1669,42 @@ SCOREP_LIBWRAP_FUNC_NAME( expf )( float __x )
     return scorep_libwrap_var_ret;
 }
 
+#undef frexpf
+float
+SCOREP_LIBWRAP_FUNC_NAME( frexpf )( float __x, int * __exponent )
+{
+    float scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( frexpf );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( frexpf );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( frexpf, ( __x, __exponent ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( frexpf );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef ldexpf
+float
+SCOREP_LIBWRAP_FUNC_NAME( ldexpf )( float __x, int __exponent )
+{
+    float scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( ldexpf );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( ldexpf );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( ldexpf, ( __x, __exponent ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( ldexpf );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef logf
 float
 SCOREP_LIBWRAP_FUNC_NAME( logf )( float __x )
@@ -1557,6 +1737,24 @@ SCOREP_LIBWRAP_FUNC_NAME( log10f )( float __x )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( log10f, ( __x ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( log10f );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef modff
+float
+SCOREP_LIBWRAP_FUNC_NAME( modff )( float __x, float * __iptr )
+{
+    float scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( modff );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( modff );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( modff, ( __x, __iptr ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( modff );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }
@@ -1795,6 +1993,42 @@ SCOREP_LIBWRAP_FUNC_NAME( fmodf )( float __x, float __y )
     return scorep_libwrap_var_ret;
 }
 
+#undef isinff
+int
+SCOREP_LIBWRAP_FUNC_NAME( isinff )( float __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( isinff );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( isinff );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( isinff, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( isinff );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef finitef
+int
+SCOREP_LIBWRAP_FUNC_NAME( finitef )( float __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( finitef );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( finitef );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( finitef, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( finitef );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef dremf
 float
 SCOREP_LIBWRAP_FUNC_NAME( dremf )( float __x, float __y )
@@ -1831,6 +2065,24 @@ SCOREP_LIBWRAP_FUNC_NAME( significandf )( float __x )
     return scorep_libwrap_var_ret;
 }
 
+#undef copysignf
+float
+SCOREP_LIBWRAP_FUNC_NAME( copysignf )( float __x, float __y )
+{
+    float scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( copysignf );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( copysignf );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( copysignf, ( __x, __y ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( copysignf );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef nanf
 float
 SCOREP_LIBWRAP_FUNC_NAME( nanf )( const char * __tagb )
@@ -1845,6 +2097,24 @@ SCOREP_LIBWRAP_FUNC_NAME( nanf )( const char * __tagb )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( nanf, ( __tagb ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( nanf );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef isnanf
+int
+SCOREP_LIBWRAP_FUNC_NAME( isnanf )( float __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( isnanf );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( isnanf );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( isnanf, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( isnanf );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }
@@ -2133,6 +2403,24 @@ SCOREP_LIBWRAP_FUNC_NAME( remainderf )( float __x, float __y )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( remainderf, ( __x, __y ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( remainderf );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef scalbnf
+float
+SCOREP_LIBWRAP_FUNC_NAME( scalbnf )( float __x, int __n )
+{
+    float scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( scalbnf );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( scalbnf );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( scalbnf, ( __x, __n ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( scalbnf );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }
@@ -2677,6 +2965,42 @@ SCOREP_LIBWRAP_FUNC_NAME( expl )( long double __x )
     return scorep_libwrap_var_ret;
 }
 
+#undef frexpl
+long double
+SCOREP_LIBWRAP_FUNC_NAME( frexpl )( long double __x, int * __exponent )
+{
+    long double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( frexpl );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( frexpl );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( frexpl, ( __x, __exponent ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( frexpl );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef ldexpl
+long double
+SCOREP_LIBWRAP_FUNC_NAME( ldexpl )( long double __x, int __exponent )
+{
+    long double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( ldexpl );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( ldexpl );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( ldexpl, ( __x, __exponent ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( ldexpl );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef logl
 long double
 SCOREP_LIBWRAP_FUNC_NAME( logl )( long double __x )
@@ -2709,6 +3033,24 @@ SCOREP_LIBWRAP_FUNC_NAME( log10l )( long double __x )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( log10l, ( __x ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( log10l );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef modfl
+long double
+SCOREP_LIBWRAP_FUNC_NAME( modfl )( long double __x, long double * __iptr )
+{
+    long double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( modfl );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( modfl );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( modfl, ( __x, __iptr ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( modfl );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }
@@ -2947,6 +3289,42 @@ SCOREP_LIBWRAP_FUNC_NAME( fmodl )( long double __x, long double __y )
     return scorep_libwrap_var_ret;
 }
 
+#undef isinfl
+int
+SCOREP_LIBWRAP_FUNC_NAME( isinfl )( long double __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( isinfl );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( isinfl );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( isinfl, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( isinfl );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef finitel
+int
+SCOREP_LIBWRAP_FUNC_NAME( finitel )( long double __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( finitel );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( finitel );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( finitel, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( finitel );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef dreml
 long double
 SCOREP_LIBWRAP_FUNC_NAME( dreml )( long double __x, long double __y )
@@ -2983,6 +3361,24 @@ SCOREP_LIBWRAP_FUNC_NAME( significandl )( long double __x )
     return scorep_libwrap_var_ret;
 }
 
+#undef copysignl
+long double
+SCOREP_LIBWRAP_FUNC_NAME( copysignl )( long double __x, long double __y )
+{
+    long double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( copysignl );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( copysignl );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( copysignl, ( __x, __y ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( copysignl );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
 #undef nanl
 long double
 SCOREP_LIBWRAP_FUNC_NAME( nanl )( const char * __tagb )
@@ -2997,6 +3393,24 @@ SCOREP_LIBWRAP_FUNC_NAME( nanl )( const char * __tagb )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( nanl, ( __tagb ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( nanl );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef isnanl
+int
+SCOREP_LIBWRAP_FUNC_NAME( isnanl )( long double __value )
+{
+    int scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( isnanl );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( isnanl );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( isnanl, ( __value ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( isnanl );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }
@@ -3285,6 +3699,24 @@ SCOREP_LIBWRAP_FUNC_NAME( remainderl )( long double __x, long double __y )
     scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( remainderl, ( __x, __y ) );
     SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
     SCOREP_LIBWRAP_FUNC_EXIT( remainderl );
+    SCOREP_LIBWRAP_EXIT_MEASUREMENT();
+    return scorep_libwrap_var_ret;
+}
+
+#undef scalbnl
+long double
+SCOREP_LIBWRAP_FUNC_NAME( scalbnl )( long double __x, int __n )
+{
+    long double scorep_libwrap_var_ret;
+    LIBWRAP_EARLY_INIT( scalbnl );
+    SCOREP_LIBWRAP_ENTER_MEASUREMENT();
+    SCOREP_LIBWRAP_INIT( libwrap_math_handle,
+                         libwrap_math_attributes );
+    SCOREP_LIBWRAP_FUNC_ENTER( scalbnl );
+    SCOREP_LIBWRAP_ENTER_WRAPPED_REGION();
+    scorep_libwrap_var_ret = SCOREP_LIBWRAP_FUNC_CALL( scalbnl, ( __x, __n ) );
+    SCOREP_LIBWRAP_EXIT_WRAPPED_REGION();
+    SCOREP_LIBWRAP_FUNC_EXIT( scalbnl );
     SCOREP_LIBWRAP_EXIT_MEASUREMENT();
     return scorep_libwrap_var_ret;
 }

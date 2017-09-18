@@ -529,7 +529,7 @@ make: *** [check] Error 1
 ###############################################################################
 $ vim -p math.filter missing.filter uncertain.filter 
 
-# Put everything from missing.filter and uncertain.filter into math.filter
+# Put everything from missing.filter and everything with the prefix "__" in uncertain.filter into math.filter
 
 ###############################################################################
 $ make

@@ -115,6 +115,22 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
+                             frexp,
+                             ( double __x, int * __exponent ),
+                             "frexp(double, int *)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             103,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
+                             ldexp,
+                             ( double __x, int __exponent ),
+                             "ldexp(double, int)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             106,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
                              log,
                              ( double __x ),
                              "log(double)",
@@ -128,6 +144,14 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
                              "log10(double)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              112,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
+                             modf,
+                             ( double __x, double * __iptr ),
+                             "modf(double, double *)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             115,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
@@ -234,6 +258,22 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
                              187,
                               )
 
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             isinf,
+                             ( double __value ),
+                             "isinf(double)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             204,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             finite,
+                             ( double __value ),
+                             "finite(double)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             208,
+                              )
+
 SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
                              drem,
                              ( double __x, double __y ),
@@ -251,11 +291,27 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
+                             copysign,
+                             ( double __x, double __y ),
+                             "copysign(double, double)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             221,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
                              nan,
                              ( const char * __tagb ),
                              "nan(const char *)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              228,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             isnan,
+                             ( double __value ),
+                             "isnan(double)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             241,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
@@ -384,6 +440,14 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
                              "remainder(double, double)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              305,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( double ),
+                             scalbn,
+                             ( double __x, int __n ),
+                             "scalbn(double, int)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             309,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
@@ -627,6 +691,22 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
+                             frexpf,
+                             ( float __x, int * __exponent ),
+                             "frexpf(float, int *)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             103,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
+                             ldexpf,
+                             ( float __x, int __exponent ),
+                             "ldexpf(float, int)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             106,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
                              logf,
                              ( float __x ),
                              "logf(float)",
@@ -640,6 +720,14 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
                              "log10f(float)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              112,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
+                             modff,
+                             ( float __x, float * __iptr ),
+                             "modff(float, float *)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             115,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
@@ -746,6 +834,22 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
                              187,
                               )
 
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             isinff,
+                             ( float __value ),
+                             "isinff(float)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             204,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             finitef,
+                             ( float __value ),
+                             "finitef(float)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             208,
+                              )
+
 SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
                              dremf,
                              ( float __x, float __y ),
@@ -763,11 +867,27 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
+                             copysignf,
+                             ( float __x, float __y ),
+                             "copysignf(float, float)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             221,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
                              nanf,
                              ( const char * __tagb ),
                              "nanf(const char *)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              228,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             isnanf,
+                             ( float __value ),
+                             "isnanf(float)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             241,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
@@ -896,6 +1016,14 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
                              "remainderf(float, float)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              305,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( float ),
+                             scalbnf,
+                             ( float __x, int __n ),
+                             "scalbnf(float, int)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             309,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
@@ -1139,6 +1267,22 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
+                             frexpl,
+                             ( long double __x, int * __exponent ),
+                             "frexpl(long double, int *)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             103,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
+                             ldexpl,
+                             ( long double __x, int __exponent ),
+                             "ldexpl(long double, int)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             106,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
                              logl,
                              ( long double __x ),
                              "logl(long double)",
@@ -1152,6 +1296,14 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
                              "log10l(long double)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              112,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
+                             modfl,
+                             ( long double __x, long double * __iptr ),
+                             "modfl(long double, long double *)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             115,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
@@ -1258,6 +1410,22 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
                              187,
                               )
 
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             isinfl,
+                             ( long double __value ),
+                             "isinfl(long double)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             204,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             finitel,
+                             ( long double __value ),
+                             "finitel(long double)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             208,
+                              )
+
 SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
                              dreml,
                              ( long double __x, long double __y ),
@@ -1275,11 +1443,27 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
+                             copysignl,
+                             ( long double __x, long double __y ),
+                             "copysignl(long double, long double)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             221,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
                              nanl,
                              ( const char * __tagb ),
                              "nanl(const char *)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              228,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),
+                             isnanl,
+                             ( long double __value ),
+                             "isnanl(long double)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             241,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
@@ -1408,6 +1592,14 @@ SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
                              "remainderl(long double, long double)",
                              "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
                              305,
+                              )
+
+SCOREP_LIBWRAP_PROCESS_FUNC( ( long double ),
+                             scalbnl,
+                             ( long double __x, int __n ),
+                             "scalbnl(long double, int)",
+                             "/usr/include/x86_64-linux-gnu/bits/mathcalls.h",
+                             309,
                               )
 
 SCOREP_LIBWRAP_PROCESS_FUNC( ( int ),

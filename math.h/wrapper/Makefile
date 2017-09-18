@@ -321,7 +321,7 @@ check: $(WRAP_LIB_SOURCE)
             echo >&2 "[Score-P]          Then repeat 'make' and 'make check'."; \
             ( \
                 echo "SCOREP_REGION_NAMES_BEGIN"; \
-                printf "     EXCLUDE MANGLED %s\n" $$uncertain_symbols; \
+                printf "  EXCLUDE MANGLED %s\n" $$uncertain_symbols; \
                 echo "SCOREP_REGION_NAMES_END"; \
             ) >uncertain.filter; \
         fi; \
@@ -333,7 +333,7 @@ check: $(WRAP_LIB_SOURCE)
             echo >&2 "[Score-P]        wrapped. Then repeat 'make' and 'make check'."; \
             ( \
                 echo "SCOREP_REGION_NAMES_BEGIN"; \
-                printf "     EXCLUDE MANGLED %s\n" $$missing_symbols; \
+                printf "  EXCLUDE MANGLED %s\n" $$missing_symbols; \
                 echo "SCOREP_REGION_NAMES_END"; \
             ) >missing.filter; \
             exit 1; \
