@@ -1,25 +1,25 @@
 LW_NAME                 = fftw3
 LW_DISPLAY_NAME         = 'fftw3'
-LW_PREFIX               = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3
+LW_PREFIX               = /sw/xk6/scorep/4.0-dev-libwrap/cle5.2_gnu4.9.3
 LW_BACKEND              = 
 LW_BACKEND_SUFFIX       = /backend
-CPPFLAGS                = -I/opt/cray/fftw/3.3.4.11/interlagos/include
-LDFLAGS                 = -L/opt/cray/fftw/3.3.4.11/interlagos/lib
+CPPFLAGS                = -I/opt/cray/fftw/3.3.4.11/x86_64/include
+LDFLAGS                 = -L/opt/cray/fftw/3.3.4.11/x86_64/lib
 LIBS                    = -lfftw3 -lfftw3f
 SCOREP_CC               = cc -std=gnu99
 SCOREP_CC_WITHOUT_FLAGS = cc
-LIBTOOL                 = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/libexec/scorep/backend/libtool
+LIBTOOL                 = /sw/xk6/scorep/4.0-dev-libwrap/cle5.2_gnu4.9.3/libexec/scorep/backend/libtool
 LIBTOOL_LDFLAGS         = 
 INSTALL                 = /usr/bin/install -c
 
-LW_GEN                  = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/libexec/scorep/scorep-library-wrapper-generator
-LW_SCOREP               = /sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/bin/scorep
+LW_GEN                  = /sw/xk6/scorep/4.0-dev-libwrap/cle5.2_gnu4.9.3/libexec/scorep/scorep-library-wrapper-generator
+LW_SCOREP               = /sw/xk6/scorep/4.0-dev-libwrap/cle5.2_gnu4.9.3/bin/scorep
 LW_LANGUAGE             = c
 LW_SRCEXT               = c
 LW_LIBTOOL_TAG          = CC
 LW_LIBLIST              =  libfftw3.so libfftw3f.so
 
-SCOREP_CPPFLAGS         = -I/sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/include -I/sw/xk6/scorep/4.0-dev-libwrap-r12791-svn/cle5.2_gnu4.9.3/include/scorep 
+SCOREP_CPPFLAGS         = -I/sw/xk6/scorep/4.0-dev-libwrap/cle5.2_gnu4.9.3/include -I/sw/xk6/scorep/4.0-dev-libwrap/cle5.2_gnu4.9.3/include/scorep 
 
 LW_INIT_FLAGS           = 
 
@@ -321,7 +321,7 @@ check: $(WRAP_LIB_SOURCE)
             echo >&2 "[Score-P]          Then repeat 'make' and 'make check'."; \
             ( \
                 echo "SCOREP_REGION_NAMES_BEGIN"; \
-                printf "     EXCLUDE MANGLED %s\n" $$uncertain_symbols; \
+                printf "  EXCLUDE MANGLED %s\n" $$uncertain_symbols; \
                 echo "SCOREP_REGION_NAMES_END"; \
             ) >uncertain.filter; \
         fi; \
@@ -333,7 +333,7 @@ check: $(WRAP_LIB_SOURCE)
             echo >&2 "[Score-P]        wrapped. Then repeat 'make' and 'make check'."; \
             ( \
                 echo "SCOREP_REGION_NAMES_BEGIN"; \
-                printf "     EXCLUDE MANGLED %s\n" $$missing_symbols; \
+                printf "  EXCLUDE MANGLED %s\n" $$missing_symbols; \
                 echo "SCOREP_REGION_NAMES_END"; \
             ) >missing.filter; \
             exit 1; \

@@ -2,8 +2,8 @@ LIBWRAP_NAME=fftw3
 LIBWRAP_CC=cc -std=gnu99
 LIBWRAP_BACKEND=
 LIBWRAP_LANGUAGE=c
-LIBWRAP_CPPFLAGS=-I/opt/cray/fftw/3.3.4.11/interlagos/include
-LIBWRAP_LDFLAGS=-L/opt/cray/fftw/3.3.4.11/interlagos/lib
+LIBWRAP_CPPFLAGS=-I/opt/cray/fftw/3.3.4.11/x86_64/include
+LIBWRAP_LDFLAGS=-L/opt/cray/fftw/3.3.4.11/x86_64/lib
 LIBWRAP_LIBS=-lfftw3 -lfftw3f
 LIBWRAP_DLOPEN_LIBS=libfftw3.so libfftw3f.so
 LIBWRAP_VARIADIC_IS_VOID_SYMBOLS=

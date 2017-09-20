@@ -124,7 +124,7 @@ static const SCOREP_LibwrapAttributes libwrap_fftw3_attributes =
 
 #undef fftw_execute
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_execute )( const fftw_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_execute )( struct fftw_plan_s *const p )
 {
     LIBWRAP_EARLY_INIT( fftw_execute );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -139,10 +139,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_execute )( const fftw_plan p )
 }
 
 #undef fftw_plan_dft
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft )( int rank, const int * n, fftw_complex * in, fftw_complex * out, int sign, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft )( int rank, const int * n, double (*in)[2], double (*out)[2], int sign, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -157,10 +157,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft )( int rank, const int * n, fftw_complex
 }
 
 #undef fftw_plan_dft_1d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_1d )( int n, fftw_complex * in, fftw_complex * out, int sign, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_1d )( int n, double (*in)[2], double (*out)[2], int sign, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_1d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -175,10 +175,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_1d )( int n, fftw_complex * in, fftw_com
 }
 
 #undef fftw_plan_dft_2d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_2d )( int n0, int n1, fftw_complex * in, fftw_complex * out, int sign, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_2d )( int n0, int n1, double (*in)[2], double (*out)[2], int sign, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_2d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -193,10 +193,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_2d )( int n0, int n1, fftw_complex * in,
 }
 
 #undef fftw_plan_dft_3d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_3d )( int n0, int n1, int n2, fftw_complex * in, fftw_complex * out, int sign, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_3d )( int n0, int n1, int n2, double (*in)[2], double (*out)[2], int sign, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_3d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -211,10 +211,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_3d )( int n0, int n1, int n2, fftw_compl
 }
 
 #undef fftw_plan_many_dft
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft )( int rank, const int * n, int howmany, fftw_complex * in, const int * inembed, int istride, int idist, fftw_complex * out, const int * onembed, int ostride, int odist, int sign, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft )( int rank, const int * n, int howmany, double (*in)[2], const int * inembed, int istride, int idist, double (*out)[2], const int * onembed, int ostride, int odist, int sign, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_many_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -229,10 +229,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft )( int rank, const int * n, int how
 }
 
 #undef fftw_plan_guru_dft
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft )( int rank, const fftw_iodim * dims, int howmany_rank, const fftw_iodim * howmany_dims, fftw_complex * in, fftw_complex * out, int sign, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, double (*in)[2], double (*out)[2], int sign, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -247,10 +247,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft )( int rank, const fftw_iodim * dim
 }
 
 #undef fftw_plan_guru_split_dft
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft )( int rank, const fftw_iodim * dims, int howmany_rank, const fftw_iodim * howmany_dims, double * ri, double * ii, double * ro, double * io, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, double * ri, double * ii, double * ro, double * io, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru_split_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -265,10 +265,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft )( int rank, const fftw_iodim
 }
 
 #undef fftw_plan_guru64_dft
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft )( int rank, const fftw_iodim64 * dims, int howmany_rank, const fftw_iodim64 * howmany_dims, fftw_complex * in, fftw_complex * out, int sign, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, double (*in)[2], double (*out)[2], int sign, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru64_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -283,10 +283,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft )( int rank, const fftw_iodim64 *
 }
 
 #undef fftw_plan_guru64_split_dft
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft )( int rank, const fftw_iodim64 * dims, int howmany_rank, const fftw_iodim64 * howmany_dims, double * ri, double * ii, double * ro, double * io, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, double * ri, double * ii, double * ro, double * io, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru64_split_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -302,7 +302,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft )( int rank, const fftw_iod
 
 #undef fftw_execute_dft
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft )( const fftw_plan p, fftw_complex * in, fftw_complex * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft )( struct fftw_plan_s *const p, double (*in)[2], double (*out)[2] )
 {
     LIBWRAP_EARLY_INIT( fftw_execute_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -318,7 +318,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft )( const fftw_plan p, fftw_complex * 
 
 #undef fftw_execute_split_dft
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft )( const fftw_plan p, double * ri, double * ii, double * ro, double * io )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft )( struct fftw_plan_s *const p, double * ri, double * ii, double * ro, double * io )
 {
     LIBWRAP_EARLY_INIT( fftw_execute_split_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -333,10 +333,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft )( const fftw_plan p, double * 
 }
 
 #undef fftw_plan_many_dft_r2c
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft_r2c )( int rank, const int * n, int howmany, double * in, const int * inembed, int istride, int idist, fftw_complex * out, const int * onembed, int ostride, int odist, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft_r2c )( int rank, const int * n, int howmany, double * in, const int * inembed, int istride, int idist, double (*out)[2], const int * onembed, int ostride, int odist, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_many_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -351,10 +351,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft_r2c )( int rank, const int * n, int
 }
 
 #undef fftw_plan_dft_r2c
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c )( int rank, const int * n, double * in, fftw_complex * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c )( int rank, const int * n, double * in, double (*out)[2], unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -369,10 +369,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c )( int rank, const int * n, double *
 }
 
 #undef fftw_plan_dft_r2c_1d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_1d )( int n, double * in, fftw_complex * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_1d )( int n, double * in, double (*out)[2], unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_r2c_1d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -387,10 +387,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_1d )( int n, double * in, fftw_compl
 }
 
 #undef fftw_plan_dft_r2c_2d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_2d )( int n0, int n1, double * in, fftw_complex * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_2d )( int n0, int n1, double * in, double (*out)[2], unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_r2c_2d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -405,10 +405,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_2d )( int n0, int n1, double * in, f
 }
 
 #undef fftw_plan_dft_r2c_3d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_3d )( int n0, int n1, int n2, double * in, fftw_complex * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_3d )( int n0, int n1, int n2, double * in, double (*out)[2], unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_r2c_3d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -423,10 +423,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_r2c_3d )( int n0, int n1, int n2, double
 }
 
 #undef fftw_plan_many_dft_c2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft_c2r )( int rank, const int * n, int howmany, fftw_complex * in, const int * inembed, int istride, int idist, double * out, const int * onembed, int ostride, int odist, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft_c2r )( int rank, const int * n, int howmany, double (*in)[2], const int * inembed, int istride, int idist, double * out, const int * onembed, int ostride, int odist, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_many_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -441,10 +441,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_dft_c2r )( int rank, const int * n, int
 }
 
 #undef fftw_plan_dft_c2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r )( int rank, const int * n, fftw_complex * in, double * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r )( int rank, const int * n, double (*in)[2], double * out, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -459,10 +459,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r )( int rank, const int * n, fftw_com
 }
 
 #undef fftw_plan_dft_c2r_1d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_1d )( int n, fftw_complex * in, double * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_1d )( int n, double (*in)[2], double * out, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_c2r_1d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -477,10 +477,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_1d )( int n, fftw_complex * in, doub
 }
 
 #undef fftw_plan_dft_c2r_2d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_2d )( int n0, int n1, fftw_complex * in, double * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_2d )( int n0, int n1, double (*in)[2], double * out, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_c2r_2d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -495,10 +495,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_2d )( int n0, int n1, fftw_complex *
 }
 
 #undef fftw_plan_dft_c2r_3d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_3d )( int n0, int n1, int n2, fftw_complex * in, double * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_3d )( int n0, int n1, int n2, double (*in)[2], double * out, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_dft_c2r_3d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -513,10 +513,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_dft_c2r_3d )( int n0, int n1, int n2, fftw_c
 }
 
 #undef fftw_plan_guru_dft_r2c
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft_r2c )( int rank, const fftw_iodim * dims, int howmany_rank, const fftw_iodim * howmany_dims, double * in, fftw_complex * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft_r2c )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, double * in, double (*out)[2], unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -531,10 +531,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft_r2c )( int rank, const fftw_iodim *
 }
 
 #undef fftw_plan_guru_dft_c2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft_c2r )( int rank, const fftw_iodim * dims, int howmany_rank, const fftw_iodim * howmany_dims, fftw_complex * in, double * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft_c2r )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, double (*in)[2], double * out, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -549,10 +549,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_dft_c2r )( int rank, const fftw_iodim *
 }
 
 #undef fftw_plan_guru_split_dft_r2c
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft_r2c )( int rank, const fftw_iodim * dims, int howmany_rank, const fftw_iodim * howmany_dims, double * in, double * ro, double * io, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft_r2c )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, double * in, double * ro, double * io, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru_split_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -567,10 +567,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft_r2c )( int rank, const fftw_i
 }
 
 #undef fftw_plan_guru_split_dft_c2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft_c2r )( int rank, const fftw_iodim * dims, int howmany_rank, const fftw_iodim * howmany_dims, double * ri, double * ii, double * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft_c2r )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, double * ri, double * ii, double * out, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru_split_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -585,10 +585,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_split_dft_c2r )( int rank, const fftw_i
 }
 
 #undef fftw_plan_guru64_dft_r2c
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft_r2c )( int rank, const fftw_iodim64 * dims, int howmany_rank, const fftw_iodim64 * howmany_dims, double * in, fftw_complex * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft_r2c )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, double * in, double (*out)[2], unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru64_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -603,10 +603,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft_r2c )( int rank, const fftw_iodim
 }
 
 #undef fftw_plan_guru64_dft_c2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft_c2r )( int rank, const fftw_iodim64 * dims, int howmany_rank, const fftw_iodim64 * howmany_dims, fftw_complex * in, double * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft_c2r )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, double (*in)[2], double * out, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru64_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -621,10 +621,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_dft_c2r )( int rank, const fftw_iodim
 }
 
 #undef fftw_plan_guru64_split_dft_r2c
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft_r2c )( int rank, const fftw_iodim64 * dims, int howmany_rank, const fftw_iodim64 * howmany_dims, double * in, double * ro, double * io, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft_r2c )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, double * in, double * ro, double * io, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru64_split_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -639,10 +639,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft_r2c )( int rank, const fftw
 }
 
 #undef fftw_plan_guru64_split_dft_c2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft_c2r )( int rank, const fftw_iodim64 * dims, int howmany_rank, const fftw_iodim64 * howmany_dims, double * ri, double * ii, double * out, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft_c2r )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, double * ri, double * ii, double * out, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru64_split_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -658,7 +658,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_split_dft_c2r )( int rank, const fftw
 
 #undef fftw_execute_dft_r2c
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft_r2c )( const fftw_plan p, double * in, fftw_complex * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft_r2c )( struct fftw_plan_s *const p, double * in, double (*out)[2] )
 {
     LIBWRAP_EARLY_INIT( fftw_execute_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -674,7 +674,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft_r2c )( const fftw_plan p, double * in
 
 #undef fftw_execute_dft_c2r
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft_c2r )( const fftw_plan p, fftw_complex * in, double * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft_c2r )( struct fftw_plan_s *const p, double (*in)[2], double * out )
 {
     LIBWRAP_EARLY_INIT( fftw_execute_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -690,7 +690,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_dft_c2r )( const fftw_plan p, fftw_comple
 
 #undef fftw_execute_split_dft_r2c
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft_r2c )( const fftw_plan p, double * in, double * ro, double * io )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft_r2c )( struct fftw_plan_s *const p, double * in, double * ro, double * io )
 {
     LIBWRAP_EARLY_INIT( fftw_execute_split_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -706,7 +706,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft_r2c )( const fftw_plan p, doubl
 
 #undef fftw_execute_split_dft_c2r
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft_c2r )( const fftw_plan p, double * ri, double * ii, double * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft_c2r )( struct fftw_plan_s *const p, double * ri, double * ii, double * out )
 {
     LIBWRAP_EARLY_INIT( fftw_execute_split_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -721,10 +721,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_split_dft_c2r )( const fftw_plan p, doubl
 }
 
 #undef fftw_plan_many_r2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_r2r )( int rank, const int * n, int howmany, double * in, const int * inembed, int istride, int idist, double * out, const int * onembed, int ostride, int odist, const fftw_r2r_kind * kind, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_r2r )( int rank, const int * n, int howmany, double * in, const int * inembed, int istride, int idist, double * out, const int * onembed, int ostride, int odist, const enum fftw_r2r_kind_do_not_use_me * kind, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_many_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -739,10 +739,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_many_r2r )( int rank, const int * n, int how
 }
 
 #undef fftw_plan_r2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r )( int rank, const int * n, double * in, double * out, const fftw_r2r_kind * kind, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r )( int rank, const int * n, double * in, double * out, const enum fftw_r2r_kind_do_not_use_me * kind, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -757,10 +757,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r )( int rank, const int * n, double * in,
 }
 
 #undef fftw_plan_r2r_1d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_1d )( int n, double * in, double * out, fftw_r2r_kind kind, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_1d )( int n, double * in, double * out, enum fftw_r2r_kind_do_not_use_me kind, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_r2r_1d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -775,10 +775,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_1d )( int n, double * in, double * out, 
 }
 
 #undef fftw_plan_r2r_2d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_2d )( int n0, int n1, double * in, double * out, fftw_r2r_kind kind0, fftw_r2r_kind kind1, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_2d )( int n0, int n1, double * in, double * out, enum fftw_r2r_kind_do_not_use_me kind0, enum fftw_r2r_kind_do_not_use_me kind1, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_r2r_2d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -793,10 +793,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_2d )( int n0, int n1, double * in, doubl
 }
 
 #undef fftw_plan_r2r_3d
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_3d )( int n0, int n1, int n2, double * in, double * out, fftw_r2r_kind kind0, fftw_r2r_kind kind1, fftw_r2r_kind kind2, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_3d )( int n0, int n1, int n2, double * in, double * out, enum fftw_r2r_kind_do_not_use_me kind0, enum fftw_r2r_kind_do_not_use_me kind1, enum fftw_r2r_kind_do_not_use_me kind2, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_r2r_3d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -811,10 +811,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_r2r_3d )( int n0, int n1, int n2, double * i
 }
 
 #undef fftw_plan_guru_r2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_r2r )( int rank, const fftw_iodim * dims, int howmany_rank, const fftw_iodim * howmany_dims, double * in, double * out, const fftw_r2r_kind * kind, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_r2r )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, double * in, double * out, const enum fftw_r2r_kind_do_not_use_me * kind, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -829,10 +829,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru_r2r )( int rank, const fftw_iodim * dim
 }
 
 #undef fftw_plan_guru64_r2r
-fftw_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_r2r )( int rank, const fftw_iodim64 * dims, int howmany_rank, const fftw_iodim64 * howmany_dims, double * in, double * out, const fftw_r2r_kind * kind, unsigned int flags )
+struct fftw_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_r2r )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, double * in, double * out, const enum fftw_r2r_kind_do_not_use_me * kind, unsigned int flags )
 {
-    fftw_plan scorep_libwrap_var_ret;
+    struct fftw_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_plan_guru64_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -848,7 +848,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_plan_guru64_r2r )( int rank, const fftw_iodim64 *
 
 #undef fftw_execute_r2r
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_r2r )( const fftw_plan p, double * in, double * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_r2r )( struct fftw_plan_s *const p, double * in, double * out )
 {
     LIBWRAP_EARLY_INIT( fftw_execute_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -864,7 +864,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_execute_r2r )( const fftw_plan p, double * in, do
 
 #undef fftw_destroy_plan
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_destroy_plan )( fftw_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_destroy_plan )( struct fftw_plan_s * p )
 {
     LIBWRAP_EARLY_INIT( fftw_destroy_plan );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -946,7 +946,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_export_wisdom_to_filename )( const char * filenam
 
 #undef fftw_export_wisdom_to_file
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_export_wisdom_to_file )( FILE * output_file )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_export_wisdom_to_file )( struct _IO_FILE * output_file )
 {
     LIBWRAP_EARLY_INIT( fftw_export_wisdom_to_file );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -980,7 +980,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_export_wisdom_to_string )( void )
 
 #undef fftw_export_wisdom
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_export_wisdom )( fftw_write_char_func write_char, void * data )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_export_wisdom )( void (*write_char)(char, void *), void * data )
 {
     LIBWRAP_EARLY_INIT( fftw_export_wisdom );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1032,7 +1032,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_import_wisdom_from_filename )( const char * filen
 
 #undef fftw_import_wisdom_from_file
 int
-SCOREP_LIBWRAP_FUNC_NAME( fftw_import_wisdom_from_file )( FILE * input_file )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_import_wisdom_from_file )( struct _IO_FILE * input_file )
 {
     int scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_import_wisdom_from_file );
@@ -1068,7 +1068,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_import_wisdom_from_string )( const char * input_s
 
 #undef fftw_import_wisdom
 int
-SCOREP_LIBWRAP_FUNC_NAME( fftw_import_wisdom )( fftw_read_char_func read_char, void * data )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_import_wisdom )( int (*read_char)(void *), void * data )
 {
     int scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_import_wisdom );
@@ -1086,7 +1086,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_import_wisdom )( fftw_read_char_func read_char, v
 
 #undef fftw_fprint_plan
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_fprint_plan )( const fftw_plan p, FILE * output_file )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_fprint_plan )( struct fftw_plan_s *const p, struct _IO_FILE * output_file )
 {
     LIBWRAP_EARLY_INIT( fftw_fprint_plan );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1102,7 +1102,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_fprint_plan )( const fftw_plan p, FILE * output_f
 
 #undef fftw_print_plan
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_print_plan )( const fftw_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_print_plan )( struct fftw_plan_s *const p )
 {
     LIBWRAP_EARLY_INIT( fftw_print_plan );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1118,7 +1118,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_print_plan )( const fftw_plan p )
 
 #undef fftw_sprint_plan
 char *
-SCOREP_LIBWRAP_FUNC_NAME( fftw_sprint_plan )( const fftw_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_sprint_plan )( struct fftw_plan_s *const p )
 {
     char * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_sprint_plan );
@@ -1136,7 +1136,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_sprint_plan )( const fftw_plan p )
 
 #undef fftw_malloc
 void *
-SCOREP_LIBWRAP_FUNC_NAME( fftw_malloc )( size_t n )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_malloc )( unsigned long n )
 {
     void * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_malloc );
@@ -1154,7 +1154,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_malloc )( size_t n )
 
 #undef fftw_alloc_real
 double *
-SCOREP_LIBWRAP_FUNC_NAME( fftw_alloc_real )( size_t n )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_alloc_real )( unsigned long n )
 {
     double * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_alloc_real );
@@ -1172,7 +1172,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_alloc_real )( size_t n )
 
 #undef fftw_alloc_complex
 fftw_complex *
-SCOREP_LIBWRAP_FUNC_NAME( fftw_alloc_complex )( size_t n )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_alloc_complex )( unsigned long n )
 {
     fftw_complex * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_alloc_complex );
@@ -1206,7 +1206,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_free )( void * p )
 
 #undef fftw_flops
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftw_flops )( const fftw_plan p, double * add, double * mul, double * fmas )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_flops )( struct fftw_plan_s *const p, double * add, double * mul, double * fmas )
 {
     LIBWRAP_EARLY_INIT( fftw_flops );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1222,7 +1222,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_flops )( const fftw_plan p, double * add, double 
 
 #undef fftw_estimate_cost
 double
-SCOREP_LIBWRAP_FUNC_NAME( fftw_estimate_cost )( const fftw_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_estimate_cost )( struct fftw_plan_s *const p )
 {
     double scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_estimate_cost );
@@ -1240,7 +1240,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_estimate_cost )( const fftw_plan p )
 
 #undef fftw_cost
 double
-SCOREP_LIBWRAP_FUNC_NAME( fftw_cost )( const fftw_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftw_cost )( struct fftw_plan_s *const p )
 {
     double scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftw_cost );
@@ -1276,7 +1276,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftw_alignment_of )( double * p )
 
 #undef fftwf_execute
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute )( const fftwf_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute )( struct fftwf_plan_s *const p )
 {
     LIBWRAP_EARLY_INIT( fftwf_execute );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1291,10 +1291,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute )( const fftwf_plan p )
 }
 
 #undef fftwf_plan_dft
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft )( int rank, const int * n, fftwf_complex * in, fftwf_complex * out, int sign, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft )( int rank, const int * n, float (*in)[2], float (*out)[2], int sign, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1309,10 +1309,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft )( int rank, const int * n, fftwf_compl
 }
 
 #undef fftwf_plan_dft_1d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_1d )( int n, fftwf_complex * in, fftwf_complex * out, int sign, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_1d )( int n, float (*in)[2], float (*out)[2], int sign, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_1d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1327,10 +1327,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_1d )( int n, fftwf_complex * in, fftwf_
 }
 
 #undef fftwf_plan_dft_2d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_2d )( int n0, int n1, fftwf_complex * in, fftwf_complex * out, int sign, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_2d )( int n0, int n1, float (*in)[2], float (*out)[2], int sign, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_2d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1345,10 +1345,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_2d )( int n0, int n1, fftwf_complex * i
 }
 
 #undef fftwf_plan_dft_3d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_3d )( int n0, int n1, int n2, fftwf_complex * in, fftwf_complex * out, int sign, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_3d )( int n0, int n1, int n2, float (*in)[2], float (*out)[2], int sign, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_3d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1363,10 +1363,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_3d )( int n0, int n1, int n2, fftwf_com
 }
 
 #undef fftwf_plan_many_dft
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft )( int rank, const int * n, int howmany, fftwf_complex * in, const int * inembed, int istride, int idist, fftwf_complex * out, const int * onembed, int ostride, int odist, int sign, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft )( int rank, const int * n, int howmany, float (*in)[2], const int * inembed, int istride, int idist, float (*out)[2], const int * onembed, int ostride, int odist, int sign, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_many_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1381,10 +1381,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft )( int rank, const int * n, int ho
 }
 
 #undef fftwf_plan_guru_dft
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft )( int rank, const fftwf_iodim * dims, int howmany_rank, const fftwf_iodim * howmany_dims, fftwf_complex * in, fftwf_complex * out, int sign, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, float (*in)[2], float (*out)[2], int sign, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1399,10 +1399,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft )( int rank, const fftwf_iodim * d
 }
 
 #undef fftwf_plan_guru_split_dft
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft )( int rank, const fftwf_iodim * dims, int howmany_rank, const fftwf_iodim * howmany_dims, float * ri, float * ii, float * ro, float * io, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, float * ri, float * ii, float * ro, float * io, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru_split_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1417,10 +1417,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft )( int rank, const fftwf_iod
 }
 
 #undef fftwf_plan_guru64_dft
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft )( int rank, const fftwf_iodim64 * dims, int howmany_rank, const fftwf_iodim64 * howmany_dims, fftwf_complex * in, fftwf_complex * out, int sign, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, float (*in)[2], float (*out)[2], int sign, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru64_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1435,10 +1435,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft )( int rank, const fftwf_iodim64
 }
 
 #undef fftwf_plan_guru64_split_dft
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft )( int rank, const fftwf_iodim64 * dims, int howmany_rank, const fftwf_iodim64 * howmany_dims, float * ri, float * ii, float * ro, float * io, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, float * ri, float * ii, float * ro, float * io, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru64_split_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1454,7 +1454,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft )( int rank, const fftwf_i
 
 #undef fftwf_execute_dft
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft )( const fftwf_plan p, fftwf_complex * in, fftwf_complex * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft )( struct fftwf_plan_s *const p, float (*in)[2], float (*out)[2] )
 {
     LIBWRAP_EARLY_INIT( fftwf_execute_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1470,7 +1470,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft )( const fftwf_plan p, fftwf_complex
 
 #undef fftwf_execute_split_dft
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft )( const fftwf_plan p, float * ri, float * ii, float * ro, float * io )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft )( struct fftwf_plan_s *const p, float * ri, float * ii, float * ro, float * io )
 {
     LIBWRAP_EARLY_INIT( fftwf_execute_split_dft );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1485,10 +1485,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft )( const fftwf_plan p, float *
 }
 
 #undef fftwf_plan_many_dft_r2c
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft_r2c )( int rank, const int * n, int howmany, float * in, const int * inembed, int istride, int idist, fftwf_complex * out, const int * onembed, int ostride, int odist, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft_r2c )( int rank, const int * n, int howmany, float * in, const int * inembed, int istride, int idist, float (*out)[2], const int * onembed, int ostride, int odist, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_many_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1503,10 +1503,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft_r2c )( int rank, const int * n, in
 }
 
 #undef fftwf_plan_dft_r2c
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c )( int rank, const int * n, float * in, fftwf_complex * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c )( int rank, const int * n, float * in, float (*out)[2], unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1521,10 +1521,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c )( int rank, const int * n, float *
 }
 
 #undef fftwf_plan_dft_r2c_1d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_1d )( int n, float * in, fftwf_complex * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_1d )( int n, float * in, float (*out)[2], unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_r2c_1d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1539,10 +1539,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_1d )( int n, float * in, fftwf_comp
 }
 
 #undef fftwf_plan_dft_r2c_2d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_2d )( int n0, int n1, float * in, fftwf_complex * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_2d )( int n0, int n1, float * in, float (*out)[2], unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_r2c_2d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1557,10 +1557,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_2d )( int n0, int n1, float * in, f
 }
 
 #undef fftwf_plan_dft_r2c_3d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_3d )( int n0, int n1, int n2, float * in, fftwf_complex * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_3d )( int n0, int n1, int n2, float * in, float (*out)[2], unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_r2c_3d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1575,10 +1575,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_r2c_3d )( int n0, int n1, int n2, float
 }
 
 #undef fftwf_plan_many_dft_c2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft_c2r )( int rank, const int * n, int howmany, fftwf_complex * in, const int * inembed, int istride, int idist, float * out, const int * onembed, int ostride, int odist, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft_c2r )( int rank, const int * n, int howmany, float (*in)[2], const int * inembed, int istride, int idist, float * out, const int * onembed, int ostride, int odist, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_many_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1593,10 +1593,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_dft_c2r )( int rank, const int * n, in
 }
 
 #undef fftwf_plan_dft_c2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r )( int rank, const int * n, fftwf_complex * in, float * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r )( int rank, const int * n, float (*in)[2], float * out, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1611,10 +1611,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r )( int rank, const int * n, fftwf_c
 }
 
 #undef fftwf_plan_dft_c2r_1d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_1d )( int n, fftwf_complex * in, float * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_1d )( int n, float (*in)[2], float * out, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_c2r_1d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1629,10 +1629,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_1d )( int n, fftwf_complex * in, fl
 }
 
 #undef fftwf_plan_dft_c2r_2d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_2d )( int n0, int n1, fftwf_complex * in, float * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_2d )( int n0, int n1, float (*in)[2], float * out, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_c2r_2d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1647,10 +1647,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_2d )( int n0, int n1, fftwf_complex
 }
 
 #undef fftwf_plan_dft_c2r_3d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_3d )( int n0, int n1, int n2, fftwf_complex * in, float * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_3d )( int n0, int n1, int n2, float (*in)[2], float * out, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_dft_c2r_3d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1665,10 +1665,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_dft_c2r_3d )( int n0, int n1, int n2, fftwf
 }
 
 #undef fftwf_plan_guru_dft_r2c
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft_r2c )( int rank, const fftwf_iodim * dims, int howmany_rank, const fftwf_iodim * howmany_dims, float * in, fftwf_complex * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft_r2c )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, float * in, float (*out)[2], unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1683,10 +1683,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft_r2c )( int rank, const fftwf_iodim
 }
 
 #undef fftwf_plan_guru_dft_c2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft_c2r )( int rank, const fftwf_iodim * dims, int howmany_rank, const fftwf_iodim * howmany_dims, fftwf_complex * in, float * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft_c2r )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, float (*in)[2], float * out, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1701,10 +1701,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_dft_c2r )( int rank, const fftwf_iodim
 }
 
 #undef fftwf_plan_guru_split_dft_r2c
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft_r2c )( int rank, const fftwf_iodim * dims, int howmany_rank, const fftwf_iodim * howmany_dims, float * in, float * ro, float * io, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft_r2c )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, float * in, float * ro, float * io, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru_split_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1719,10 +1719,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft_r2c )( int rank, const fftwf
 }
 
 #undef fftwf_plan_guru_split_dft_c2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft_c2r )( int rank, const fftwf_iodim * dims, int howmany_rank, const fftwf_iodim * howmany_dims, float * ri, float * ii, float * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft_c2r )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, float * ri, float * ii, float * out, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru_split_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1737,10 +1737,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_split_dft_c2r )( int rank, const fftwf
 }
 
 #undef fftwf_plan_guru64_dft_r2c
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft_r2c )( int rank, const fftwf_iodim64 * dims, int howmany_rank, const fftwf_iodim64 * howmany_dims, float * in, fftwf_complex * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft_r2c )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, float * in, float (*out)[2], unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru64_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1755,10 +1755,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft_r2c )( int rank, const fftwf_iod
 }
 
 #undef fftwf_plan_guru64_dft_c2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft_c2r )( int rank, const fftwf_iodim64 * dims, int howmany_rank, const fftwf_iodim64 * howmany_dims, fftwf_complex * in, float * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft_c2r )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, float (*in)[2], float * out, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru64_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1773,10 +1773,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_dft_c2r )( int rank, const fftwf_iod
 }
 
 #undef fftwf_plan_guru64_split_dft_r2c
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft_r2c )( int rank, const fftwf_iodim64 * dims, int howmany_rank, const fftwf_iodim64 * howmany_dims, float * in, float * ro, float * io, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft_r2c )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, float * in, float * ro, float * io, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru64_split_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1791,10 +1791,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft_r2c )( int rank, const fft
 }
 
 #undef fftwf_plan_guru64_split_dft_c2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft_c2r )( int rank, const fftwf_iodim64 * dims, int howmany_rank, const fftwf_iodim64 * howmany_dims, float * ri, float * ii, float * out, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft_c2r )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, float * ri, float * ii, float * out, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru64_split_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1810,7 +1810,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_split_dft_c2r )( int rank, const fft
 
 #undef fftwf_execute_dft_r2c
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft_r2c )( const fftwf_plan p, float * in, fftwf_complex * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft_r2c )( struct fftwf_plan_s *const p, float * in, float (*out)[2] )
 {
     LIBWRAP_EARLY_INIT( fftwf_execute_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1826,7 +1826,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft_r2c )( const fftwf_plan p, float * i
 
 #undef fftwf_execute_dft_c2r
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft_c2r )( const fftwf_plan p, fftwf_complex * in, float * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft_c2r )( struct fftwf_plan_s *const p, float (*in)[2], float * out )
 {
     LIBWRAP_EARLY_INIT( fftwf_execute_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1842,7 +1842,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_dft_c2r )( const fftwf_plan p, fftwf_com
 
 #undef fftwf_execute_split_dft_r2c
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft_r2c )( const fftwf_plan p, float * in, float * ro, float * io )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft_r2c )( struct fftwf_plan_s *const p, float * in, float * ro, float * io )
 {
     LIBWRAP_EARLY_INIT( fftwf_execute_split_dft_r2c );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1858,7 +1858,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft_r2c )( const fftwf_plan p, flo
 
 #undef fftwf_execute_split_dft_c2r
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft_c2r )( const fftwf_plan p, float * ri, float * ii, float * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft_c2r )( struct fftwf_plan_s *const p, float * ri, float * ii, float * out )
 {
     LIBWRAP_EARLY_INIT( fftwf_execute_split_dft_c2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -1873,10 +1873,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_split_dft_c2r )( const fftwf_plan p, flo
 }
 
 #undef fftwf_plan_many_r2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_r2r )( int rank, const int * n, int howmany, float * in, const int * inembed, int istride, int idist, float * out, const int * onembed, int ostride, int odist, const fftwf_r2r_kind * kind, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_r2r )( int rank, const int * n, int howmany, float * in, const int * inembed, int istride, int idist, float * out, const int * onembed, int ostride, int odist, const enum fftw_r2r_kind_do_not_use_me * kind, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_many_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1891,10 +1891,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_many_r2r )( int rank, const int * n, int ho
 }
 
 #undef fftwf_plan_r2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r )( int rank, const int * n, float * in, float * out, const fftwf_r2r_kind * kind, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r )( int rank, const int * n, float * in, float * out, const enum fftw_r2r_kind_do_not_use_me * kind, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1909,10 +1909,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r )( int rank, const int * n, float * in,
 }
 
 #undef fftwf_plan_r2r_1d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_1d )( int n, float * in, float * out, fftwf_r2r_kind kind, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_1d )( int n, float * in, float * out, enum fftw_r2r_kind_do_not_use_me kind, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_r2r_1d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1927,10 +1927,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_1d )( int n, float * in, float * out, f
 }
 
 #undef fftwf_plan_r2r_2d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_2d )( int n0, int n1, float * in, float * out, fftwf_r2r_kind kind0, fftwf_r2r_kind kind1, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_2d )( int n0, int n1, float * in, float * out, enum fftw_r2r_kind_do_not_use_me kind0, enum fftw_r2r_kind_do_not_use_me kind1, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_r2r_2d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1945,10 +1945,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_2d )( int n0, int n1, float * in, float
 }
 
 #undef fftwf_plan_r2r_3d
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_3d )( int n0, int n1, int n2, float * in, float * out, fftwf_r2r_kind kind0, fftwf_r2r_kind kind1, fftwf_r2r_kind kind2, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_3d )( int n0, int n1, int n2, float * in, float * out, enum fftw_r2r_kind_do_not_use_me kind0, enum fftw_r2r_kind_do_not_use_me kind1, enum fftw_r2r_kind_do_not_use_me kind2, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_r2r_3d );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1963,10 +1963,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_r2r_3d )( int n0, int n1, int n2, float * i
 }
 
 #undef fftwf_plan_guru_r2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_r2r )( int rank, const fftwf_iodim * dims, int howmany_rank, const fftwf_iodim * howmany_dims, float * in, float * out, const fftwf_r2r_kind * kind, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_r2r )( int rank, const struct fftw_iodim_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim_do_not_use_me * howmany_dims, float * in, float * out, const enum fftw_r2r_kind_do_not_use_me * kind, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -1981,10 +1981,10 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru_r2r )( int rank, const fftwf_iodim * d
 }
 
 #undef fftwf_plan_guru64_r2r
-fftwf_plan
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_r2r )( int rank, const fftwf_iodim64 * dims, int howmany_rank, const fftwf_iodim64 * howmany_dims, float * in, float * out, const fftwf_r2r_kind * kind, unsigned int flags )
+struct fftwf_plan_s *
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_r2r )( int rank, const struct fftw_iodim64_do_not_use_me * dims, int howmany_rank, const struct fftw_iodim64_do_not_use_me * howmany_dims, float * in, float * out, const enum fftw_r2r_kind_do_not_use_me * kind, unsigned int flags )
 {
-    fftwf_plan scorep_libwrap_var_ret;
+    struct fftwf_plan_s * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_plan_guru64_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
     SCOREP_LIBWRAP_INIT( libwrap_fftw3_handle,
@@ -2000,7 +2000,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_plan_guru64_r2r )( int rank, const fftwf_iodim64
 
 #undef fftwf_execute_r2r
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_r2r )( const fftwf_plan p, float * in, float * out )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_r2r )( struct fftwf_plan_s *const p, float * in, float * out )
 {
     LIBWRAP_EARLY_INIT( fftwf_execute_r2r );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -2016,7 +2016,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_execute_r2r )( const fftwf_plan p, float * in, f
 
 #undef fftwf_destroy_plan
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_destroy_plan )( fftwf_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_destroy_plan )( struct fftwf_plan_s * p )
 {
     LIBWRAP_EARLY_INIT( fftwf_destroy_plan );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -2098,7 +2098,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_export_wisdom_to_filename )( const char * filena
 
 #undef fftwf_export_wisdom_to_file
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_export_wisdom_to_file )( FILE * output_file )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_export_wisdom_to_file )( struct _IO_FILE * output_file )
 {
     LIBWRAP_EARLY_INIT( fftwf_export_wisdom_to_file );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -2132,7 +2132,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_export_wisdom_to_string )( void )
 
 #undef fftwf_export_wisdom
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_export_wisdom )( fftwf_write_char_func write_char, void * data )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_export_wisdom )( void (*write_char)(char, void *), void * data )
 {
     LIBWRAP_EARLY_INIT( fftwf_export_wisdom );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -2184,7 +2184,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_import_wisdom_from_filename )( const char * file
 
 #undef fftwf_import_wisdom_from_file
 int
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_import_wisdom_from_file )( FILE * input_file )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_import_wisdom_from_file )( struct _IO_FILE * input_file )
 {
     int scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_import_wisdom_from_file );
@@ -2220,7 +2220,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_import_wisdom_from_string )( const char * input_
 
 #undef fftwf_import_wisdom
 int
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_import_wisdom )( fftwf_read_char_func read_char, void * data )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_import_wisdom )( int (*read_char)(void *), void * data )
 {
     int scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_import_wisdom );
@@ -2238,7 +2238,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_import_wisdom )( fftwf_read_char_func read_char,
 
 #undef fftwf_fprint_plan
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_fprint_plan )( const fftwf_plan p, FILE * output_file )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_fprint_plan )( struct fftwf_plan_s *const p, struct _IO_FILE * output_file )
 {
     LIBWRAP_EARLY_INIT( fftwf_fprint_plan );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -2254,7 +2254,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_fprint_plan )( const fftwf_plan p, FILE * output
 
 #undef fftwf_print_plan
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_print_plan )( const fftwf_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_print_plan )( struct fftwf_plan_s *const p )
 {
     LIBWRAP_EARLY_INIT( fftwf_print_plan );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -2270,7 +2270,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_print_plan )( const fftwf_plan p )
 
 #undef fftwf_sprint_plan
 char *
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_sprint_plan )( const fftwf_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_sprint_plan )( struct fftwf_plan_s *const p )
 {
     char * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_sprint_plan );
@@ -2288,7 +2288,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_sprint_plan )( const fftwf_plan p )
 
 #undef fftwf_malloc
 void *
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_malloc )( size_t n )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_malloc )( unsigned long n )
 {
     void * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_malloc );
@@ -2306,7 +2306,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_malloc )( size_t n )
 
 #undef fftwf_alloc_real
 float *
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_alloc_real )( size_t n )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_alloc_real )( unsigned long n )
 {
     float * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_alloc_real );
@@ -2324,7 +2324,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_alloc_real )( size_t n )
 
 #undef fftwf_alloc_complex
 fftwf_complex *
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_alloc_complex )( size_t n )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_alloc_complex )( unsigned long n )
 {
     fftwf_complex * scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_alloc_complex );
@@ -2358,7 +2358,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_free )( void * p )
 
 #undef fftwf_flops
 void
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_flops )( const fftwf_plan p, double * add, double * mul, double * fmas )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_flops )( struct fftwf_plan_s *const p, double * add, double * mul, double * fmas )
 {
     LIBWRAP_EARLY_INIT( fftwf_flops );
     SCOREP_LIBWRAP_ENTER_MEASUREMENT();
@@ -2374,7 +2374,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_flops )( const fftwf_plan p, double * add, doubl
 
 #undef fftwf_estimate_cost
 double
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_estimate_cost )( const fftwf_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_estimate_cost )( struct fftwf_plan_s *const p )
 {
     double scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_estimate_cost );
@@ -2392,7 +2392,7 @@ SCOREP_LIBWRAP_FUNC_NAME( fftwf_estimate_cost )( const fftwf_plan p )
 
 #undef fftwf_cost
 double
-SCOREP_LIBWRAP_FUNC_NAME( fftwf_cost )( const fftwf_plan p )
+SCOREP_LIBWRAP_FUNC_NAME( fftwf_cost )( struct fftwf_plan_s *const p )
 {
     double scorep_libwrap_var_ret;
     LIBWRAP_EARLY_INIT( fftwf_cost );

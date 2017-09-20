@@ -414,7 +414,7 @@ $ watch qstat -u $USER # until the job is complete
 
 ###############################################################################
 
-$ cube_info -m visits:excl scorep-fftw3-test-linktime-3596607/profile.cubex 
+$ cube_info -m visits:excl scorep-fftw3-test-linktime-3632913/profile.cubex
 |      Visits (E) | Diff-Calltree
 |               1 |  * main
 |               2 |  |  * fftwf_malloc(size_t)
@@ -426,7 +426,7 @@ $ cube_info -m visits:excl scorep-fftw3-test-linktime-3596607/profile.cubex
 |               1 |  |  * fftwf_destroy_plan(fftwf_plan)
 |               2 |  |  * fftwf_free(void *)
 
-$ cube_info -m visits:excl scorep-fftw3-test-runtime-3596607/profile.cubex 
+$ cube_info -m visits:excl scorep-fftw3-test-runtime-3632913/profile.cubex
 |      Visits (E) | Diff-Calltree
 |               1 |  * main
 |               2 |  |  * fftwf_malloc(size_t)
@@ -438,9 +438,9 @@ $ cube_info -m visits:excl scorep-fftw3-test-runtime-3596607/profile.cubex
 ###############################################################################
 
 $ ls
-3596607-fftw3-test.err  fftw3.wrap                           libscorep_libwrap_fftw3_runtime.lo  main                   README.md
-3596607-fftw3-test.out  job-titan.pbs                        libscorep_libwrap_fftw3_runtime.o   main.c                 scorep-fftw3-test-linktime-3596607
-fftw3.filter            libscorep_libwrap_fftw3_linktime.la  libwrap.c                           main_linktime_wrapped  scorep-fftw3-test-runtime-3596607
+3632913-fftw3-test.err  fftw3.wrap                           libscorep_libwrap_fftw3_runtime.lo  main                   README.md
+3632913-fftw3-test.out  job-titan.pbs                        libscorep_libwrap_fftw3_runtime.o   main.c                 scorep-fftw3-test-linktime-3632913
+fftw3.filter            libscorep_libwrap_fftw3_linktime.la  libwrap.c                           main_linktime_wrapped  scorep-fftw3-test-runtime-3632913
 fftw3.libwrap           libscorep_libwrap_fftw3_linktime.lo  libwrap.h                           main_runtime_wrapped   scorep_libwrap_fftw3.c
 fftw3.nvcc.wrap         libscorep_libwrap_fftw3_linktime.o   libwrap.i                           Makefile               scorep_libwrap_fftw3.inc.c
 fftw3.summary           libscorep_libwrap_fftw3_runtime.la   load-modules-titan.sh               missing.filter
