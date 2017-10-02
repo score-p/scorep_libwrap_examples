@@ -10,7 +10,7 @@ Collection of configurations to create wrappers for certain libraries via Score-
 
 ### Ubuntu 17.04 Zesty
     
-    sudo apt install libclang-4.0-dev clang-4.0 llvm-4.0
+    sudo apt install libclang-4.0-dev clang-4.0 llvm-4.0 llvm
 
 ## How to Use
 
