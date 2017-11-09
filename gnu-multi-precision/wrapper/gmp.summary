@@ -1,0 +1,9 @@
+Configure command:
+  scorep-libwrap-init           --name gmp \
+                                --display-name 'gmp' \
+                                --prefix '/opt/scorep-libwrap' \
+                                -x c \
+                                --backend vanilla \
+                                --cppflags '' \
+                                --ldflags '' \
+                                --libs '-lgmp'

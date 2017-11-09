@@ -1,0 +1,16 @@
+# See Score-P Manual on Filtering for infos
+
+SCOREP_FILE_NAMES_BEGIN
+  #EXCLUDE */asd?.*
+  #INCLUDE */folder/asdf.c */qwerty.*
+  #        /etc/bash.bashrc
+  #EXCLUDE */querty.h
+SCOREP_FILE_NAMES_END
+
+SCOREP_REGION_NAMES_BEGIN
+  #EXCLUDE
+  #INCLUDE foo*
+  #EXCLUDE foo*bar foo*baz
+  #        main
+  #INCLUDE foo123bar
+SCOREP_REGION_NAMES_END
