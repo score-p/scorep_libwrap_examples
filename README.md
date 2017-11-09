@@ -8,8 +8,8 @@ Collection of configurations to create wrappers for certain libraries via Score-
 - libclang-dev 3.6+
 - clang/llvm 3.6+
 
-### Ubuntu 17.04 Zesty
-    
+### Ubuntu 17.04 Zesty and 17.10 Artful
+
     sudo apt install libclang-4.0-dev clang-4.0 llvm-4.0 llvm
 
 ## How to Use
