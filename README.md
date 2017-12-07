@@ -12,6 +12,11 @@ Collection of configurations to create wrappers for certain libraries via Score-
 
     sudo apt install libclang-4.0-dev clang-4.0 llvm-4.0 llvm
 
+To use Clang/LLVM 5.0 you might need to add symlinks from clang-5.0, clang++-5.0 and llvm-config-5.0 to the respective non-suffixed binaries.
+This ensures that Score-P's `configure` finds them.
+Unfortunately all Clang/LLVM binaries other than version 4.0 are suffixed in 17.10 Artful,
+and there is no package like `llvm` for 4.0 adding symlinks to remove the suffix automatically.
+
 ## How to Use
 
 - Every directory contains one wrapper
